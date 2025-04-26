@@ -1,12 +1,13 @@
 
 <template>
 
-  <div>
+  <div class="dialog-container">
     <Right_box>
       <Right />
     </Right_box>
+    <router-view></router-view>
   </div>
-  <router-view></router-view>
+
 </template>
 
 <script lang="ts" setup>

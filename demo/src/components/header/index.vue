@@ -26,11 +26,11 @@
                     </el-tooltip>
                 </div>
                 <!-- 天空切换 -->
-                <div @click="SkyBoxClick">
+                <!-- <div @click="SkyBoxClick">
                     <el-tooltip class="box-item" content="天空" effect="dark" placement="bottom">
                         <Icon :color="SkyBoxShow ? '#7afafe' : '#fff'" :font-size="26" icon="tiankonghe" />
                     </el-tooltip>
-                </div>
+                </div> -->
                 <!-- 图层树显示/隐藏 -->
                 <div @click="LayerTreeClick">
                     <el-tooltip class="box-item" effect="dark" content="图层树" placement="bottom">
@@ -38,11 +38,12 @@
                     </el-tooltip>
                 </div>
                 <!-- 导览显示/隐藏 -->
-                <div @click="AnimationClick">
+                <!-- <div @click="AnimationClick">
                     <el-tooltip class="box-item" effect="dark" content="导览" placement="bottom">
                         <Icon :color="AnimationShow ? '#7afafe' : '#fff'" :font-size="26" icon="xunimanyou" />
                     </el-tooltip>
-                </div>
+                </div> -->
+                 <!-- TODO: 天气显示不出来 -->
                 <!-- 气象显示/隐藏 -->
                 <div @click="WeatherClick">
                     <el-tooltip class="box-item" effect="dark" content="气象" placement="bottom">
@@ -111,20 +112,44 @@ let WeatherData = ref()  // 存储天气数据
 let WeatherPm2P5 = ref() // 存储PM2.5数据
 
 // 获取天气信息
-const getWeatherData = async () => {
-    let name = process.env.NODE_ENV === 'development' ? '深圳' : '深圳'
+// const getWeatherData = async () => {
+//     let name = process.env.NODE_ENV === 'development' ? '深圳' : '深圳'
     
-    // 获取城市ID
-    const CityId: any = await getWeatherCityId(name)
+//     // 获取城市ID
+//     const CityId: any = await getWeatherCityId(name)
     
-    // 获取天气信息
-    const CityWeather: any = await getWeather(CityId.location[0].id)
-    WeatherData.value = CityWeather
+//     // 获取天气信息
+//     const CityWeather: any = await getWeather(CityId.location[0].id)
+//     WeatherData.value = CityWeather
 
-    // 获取PM2.5数据
-    const CityWeather_Pm2P5 = await getWeatherPm2P5(CityId.location[0].id)
-    WeatherPm2P5.value = CityWeather_Pm2P5
+//     // 获取PM2.5数据
+//     const CityWeather_Pm2P5 = await getWeatherPm2P5(CityId.location[0].id)
+//     WeatherPm2P5.value = CityWeather_Pm2P5
+// }
+
+const getWeatherData = async () => {
+  let name = process.env.NODE_ENV === 'development' ? '深圳' : '深圳'
+
+  // 获取城市ID
+  const CityId: any = await getWeatherCityId(name)
+
+  // 判断是否拿到了 location 列表
+  if (!CityId?.location?.length) {
+    console.warn('获取城市 ID 失败或返回格式不正确:', CityId)
+    return
+  }
+
+  const cityId = CityId.location[0].id
+
+  // 获取天气信息
+  const CityWeather: any = await getWeather(cityId)
+  WeatherData.value = CityWeather
+
+  // 获取PM2.5数据
+  const CityWeather_Pm2P5 = await getWeatherPm2P5(cityId)
+  WeatherPm2P5.value = CityWeather_Pm2P5
 }
+
 
 // 天气链接跳转
 const WeahterLink = () => {

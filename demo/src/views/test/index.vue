@@ -1,8 +1,8 @@
 <template>
-<div class="hello-world">
-    <h1>{{ message }}</h1>
-    <el-button @click="changeMessage">点击我</el-button>
-</div>
+    <div class="hello-world">
+        <h1>{{ message }}</h1>
+        <el-button @click="changeMessage">点击我</el-button>
+    </div>
 </template>
 
 <script>

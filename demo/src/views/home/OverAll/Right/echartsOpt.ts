@@ -1,5 +1,384 @@
 import * as echarts from "echarts";
 
+export const optionAirHumidity = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '5%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+      axisTick: {
+        alignWithLabel: true
+      },
+      axisLine: { lineStyle: { color: '#fff' } },
+      axisLabel: { color: '#fff' }
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: '%',
+      axisLine: { lineStyle: { color: '#fff' } },
+      axisLabel: { color: '#fff' },
+      splitLine: { lineStyle: { color: '#444' } }
+    }
+  ],
+  series: [
+    {
+      name: '空气湿度',
+      type: 'bar',
+      barWidth: '60%',
+      itemStyle: {
+        color: '#91cc75'
+      },
+      data: [45, 46, 47, 49, 50, 52, 55, 58, 60, 62, 64, 66, 68, 70, 72, 70, 68, 65, 62, 60, 58, 56, 50, 48]
+    }
+  ]
+};
+
+export const optionAirTemperature = {
+  tooltip: {
+    trigger: 'axis'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '5%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+    axisLine: { lineStyle: { color: '#fff' } },
+    axisLabel: { color: '#fff' }
+  },
+  yAxis: {
+    type: 'value',
+    name: '°C',
+    axisLine: { lineStyle: { color: '#fff' } },
+    axisLabel: { color: '#fff' },
+    splitLine: { lineStyle: { color: '#444' } }
+  },
+  series: [
+    {
+      name: '空气温度',
+      type: 'line',
+      data: [16, 15, 15, 14, 14, 15, 17, 19, 22, 24, 25, 26, 27, 28, 28, 27, 26, 24, 22, 21, 20, 19, 18, 17],
+      symbol: 'circle',
+      symbolSize: 8,
+      lineStyle: {
+        color: '#5470C6',
+        width: 3
+      },
+      itemStyle: {
+        color: '#5470C6'
+      },
+      areaStyle: {
+        color: 'rgba(84,112,198,0.2)'
+      }
+    }
+  ]
+};
+
+  
+export const optionTempLine = {
+    title: {
+      text: '土壤温度变化',
+      textStyle: {
+        color: '#fff',
+        fontSize: 16,
+      },
+      left: 'center',
+    },
+    tooltip: {
+      trigger: 'axis',
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '15%',
+      containLabel: true,
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: [
+        '0:00', '2:00', '4:00', '6:00', '8:00', '10:00', 
+        '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'
+      ],
+      axisLabel: { color: '#ccc' },
+      axisLine: { lineStyle: { color: '#888' } },
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: { color: '#ccc' },
+      splitLine: { lineStyle: { color: '#333' } },
+    },
+    series: [
+      {
+        name: '温度 (℃)',
+        type: 'line',
+        smooth: true,
+        data: [10, 12, 13, 15, 20, 23, 26, 28, 25, 22, 18, 14],
+        lineStyle: { color: '#FFA500' },
+        areaStyle: {
+          color: 'rgba(255,165,0,0.2)',
+        },
+        symbol: 'circle',
+        symbolSize: 6,
+        itemStyle: {
+          color: '#FFA500',
+          borderColor: '#fff',
+          borderWidth: 2,
+        },
+      },
+    ],
+  };
+  
+  
+export const optionConductivityLine = {
+    title: {
+      text: '土壤电导率',
+      textStyle: {
+        color: '#fff',
+        fontSize: 16,
+      },
+      left: 'center',
+    },
+    tooltip: {
+      trigger: 'axis',
+    },
+    grid: {
+      left: '8%',
+      right: '5%',
+      bottom: '15%',
+      containLabel: true,
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: [
+        '0:00', '2:00', '4:00', '6:00', '8:00', '10:00', 
+        '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'
+      ],
+      axisLabel: { color: '#ccc' },
+      axisLine: { lineStyle: { color: '#888' } },
+    },
+    yAxis: {
+      type: 'value',
+      name: 'μS/cm',
+      nameTextStyle: { color: '#ccc', align: 'right' },
+      axisLabel: { color: '#ccc' },
+      splitLine: { lineStyle: { color: '#444' } },
+    },
+    series: [
+      {
+        name: '电导率',
+        type: 'line',
+        smooth: true,
+        data: [300, 320, 310, 350, 400, 390, 420, 430, 410, 390, 370, 360],
+        lineStyle: { color: '#00E5FF' },
+        areaStyle: {
+          color: 'rgba(0,229,255,0.2)',
+        },
+        symbol: 'circle',
+        symbolSize: 6,
+        itemStyle: {
+          color: '#00E5FF',
+          borderColor: '#fff',
+          borderWidth: 2,
+        },
+        markLine: {
+          data: [{ yAxis: 500 }],
+          lineStyle: {
+            color: '#FF4C4C',
+            type: 'dashed',
+          },
+          label: {
+            formatter: '预警值',
+            color: '#FF4C4C',
+          },
+        },
+      },
+    ],
+  };
+  
+  
+export const optionPhGauge = {
+    // title: {
+    //   text: '土壤 pH 值',
+    //   left: 'center'
+    // },
+    series: [
+      {
+        type: 'gauge',
+        startAngle: 180,
+        endAngle: 0,
+        min: 3,
+        max: 9,
+        axisLine: {
+          lineStyle: {
+            width: 15,
+            color: [
+              [0.33, '#5470C6'],  // 酸
+              [0.66, '#91CC75'],  // 中
+              [1, '#EE6666']      // 碱
+            ]
+          }
+        },
+        pointer: {
+          width: 5
+        },
+        detail: {
+          valueAnimation: true,
+          formatter: '{value}',
+          fontSize: 20,
+          color: '#fff' // 字体颜色变成白色
+        },
+        data: [
+          {
+            value: 6.5,
+            name: 'pH',
+            color: '#fff' // 字体颜色变成白色
+          }
+        ]
+      }
+    ]
+};
+
+
+
+
+export const optionSoilStacked = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['土壤温度', '土壤湿度', '电导率'],
+      top: '10px',
+      textStyle: {
+        color: '#fff' // 字体颜色变成白色
+      }
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: [
+        '0:00', '2:00', '4:00', '6:00', '8:00', '10:00',
+        '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'
+      ],
+      axisLabel: {
+        color: '#fff' // 字体颜色变成白色
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#fff' // 轴线颜色变成白色
+        }
+      }
+    },
+    yAxis: {
+      type: 'value',
+      name: '数值',
+      axisLabel: {
+        formatter: '{value}',
+        color: '#fff' // 字体颜色变成白色
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#fff' // 轴线颜色变成白色
+        }
+      }
+    },
+    series: [
+      {
+        name: '土壤温度',
+        type: 'line',
+        stack: 'total',
+        data: [10, 9, 8, 7, 8, 12, 18, 22, 21, 17, 14, 11]
+      },
+      {
+        name: '土壤湿度',
+        type: 'line',
+        stack: 'total',
+        data: [35, 36, 34, 33, 32, 40, 42, 44, 41, 38, 36, 35]
+      },
+      {
+        name: '电导率',
+        type: 'line',
+        stack: 'total',
+        data: [300, 310, 290, 305, 315, 330, 360, 370, 340, 320, 310, 300]
+      }
+    ]
+  };
+  
+
+export const optionNpkBar = {
+    tooltip: {
+        trigger: 'axis', // 提示框触发类型，'axis' 表示坐标轴触发
+    },
+    xAxis: {
+      type: 'category',
+      data: ['氮', '磷', '钾'],
+      axisLabel: { color: '#ccc' }, // X轴标签文字颜色
+      axisLine: { lineStyle: { color: '#888' } }, // X轴轴线样式，颜色为灰色
+    },
+    yAxis: {
+        type: 'value', // Y轴类型为数值轴
+        name: 'mg/kg', // Y轴名称，表示单位
+        nameTextStyle: { color: '#ccc' }, // Y轴名称文字颜色
+        axisLabel: { color: '#ccc' }, // Y轴标签文字颜色
+        splitLine: { lineStyle: { color: '#444' } }, // Y轴分隔线样式，颜色为深灰色
+    },
+    series: [
+        {
+            type: 'bar', // 图表类型为柱状图
+            data: [60, 45, 54], // 柱状图数据，分别表示氮、磷、钾的含量
+            barWidth: '30%', // 柱子的宽度，百分比表示相对于类目宽度
+            itemStyle: {
+                color: function (params: any) {
+                    const colors = ['#73C0DE', '#FAC858', '#EE6666']; // 定义每个柱子的颜色
+                    return colors[params.dataIndex]; // 根据数据索引返回对应颜色
+                },
+            },
+            markLine: {
+                data: [
+                    { type: 'average', name: '平均值' }, // 添加一条表示平均值的标线
+                ],
+                lineStyle: {
+                    type: 'dashed', // 标线样式为虚线
+                    color: '#aaa', // 标线颜色为浅灰色
+                },
+                label: {
+                    color: '#aaa', // 标线标签文字颜色
+                },
+            },
+        },
+    ],
+  };
+
+
 export const option1 = () => {
     const option = {
         grid: [

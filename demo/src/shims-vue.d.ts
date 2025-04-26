@@ -10,3 +10,11 @@ declare module "*.json" {
 	export default value;
 }
 
+declare global {
+	interface ImportMeta {
+	  hot?: {
+		accept: (callback: () => void) => void;
+	  };
+	}
+}
+

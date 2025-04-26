@@ -1,5 +1,3 @@
-
-
 declare let AirCityPlayer: any;
 declare let $: any;
 // declare var userInfo: any;

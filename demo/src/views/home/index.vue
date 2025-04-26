@@ -1,17 +1,17 @@
 <template>
     <!-- 播放器组件 -->
     <div>
-        <!-- <Player /> -->
-        <HeaderLink/>
+        <Player />
+        <!-- <Right /> -->
         <router-view/>
+        <HeaderLink/>
         <Header v-if="!UIShow" />
     </div>
    
-
 </template>
 <script lang="ts" setup>
 // 显示组件
-// import Player from '@/components/player/player.vue'
+import Player from '@/components/player/player.vue'
 import HeaderLink from '@/components/headerlink/index.vue'
 import Header from '@/components/header/index.vue'
 
@@ -38,16 +38,6 @@ const back = () => {
     __g.settings.setMainUIVisibility(false)
 }
 
-// 在组件挂载时打印 ToolsStore 的状态
-onMounted(() => {
-    console.log('ToolsStore State:', ToolsStore.$state)
-    console.log('LayerTreeShow:', LayerTreeShow.value)
-    console.log('AnimationShow:', AnimationShow.value)
-    console.log('SkyBoxShow:', SkyBoxShow.value)
-    console.log('WeatherShow:', WeatherShow.value)
-    console.log('TooBarShow:', TooBarShow.value)
-    console.log('UIShow:', UIShow.value)
-})
 </script>
 
 <style lang="scss" scoped>

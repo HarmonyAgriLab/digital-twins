@@ -32,7 +32,7 @@ cd demo
 
 
 
-![image-20250420103915332](D:\coding\frontEnd\digital-twins\images\image-20250420103915332.png)
+![image-20250420103915332](/images/image-20250420103915332.png)
 
 
 
@@ -42,7 +42,7 @@ cd demo
 npm install
 ```
 
-+ 下载的时候可能长达10分钟，具体看电脑，只要一直在转圈圈就可以的
++ 下载的时候可能长达10分钟，具体看电脑。
 
 #### 如果出现报错 error
 
@@ -58,9 +58,9 @@ npm install
 
 ##### 重新安装依赖
 
-删掉 ：`node_modules` 和 `package-lock.json`。
+删掉 ：`node_modules` 和 `package-lock.json`
 
-跳到项目运行那一步。
+跳到项目运行那一步
 
 ### 没有安装 node
 
@@ -72,7 +72,7 @@ npm install
 
 
 
-如果电脑环境中已经有 node，建议尝试运行，如果出现报错卸载掉原来的node。
+如果电脑环境中已经有 node，建议尝试运行，如果出现报错卸载掉原来的node
 
 1. 首先进入到与那么目录下面
 
@@ -82,7 +82,7 @@ cd demo
 
 
 
-![image-20250420103915332](D:\coding\frontEnd\digital-twins\images\image-20250420103915332.png)
+![image-20250420103915332](/images/image-20250420103915332.png)
 
 
 
@@ -95,7 +95,7 @@ npm install
 + 出现 `warn` 没有关系
 + 出现 `erro` 则说明有错误
 
-+ 下载的时候可能长达10分钟，具体看电脑，只要一直在转圈圈就可以的
++ 下载的时候可能长达10分钟，具体看电脑
 
 3. 运行项目
 
@@ -103,12 +103,12 @@ npm install
 npm run serve
 ```
 
-+ 运行需要的时间也很长。。。
++ 需要的时间很长，同样需要耐心等待
 
 
 
 最终效果大致如下：
 
-![image-20250420110157030](D:\coding\frontEnd\digital-twins\images\image-20250420110157030.png)
 
-![image-20250420110210979](D:\coding\frontEnd\digital-twins\images\image-20250420110210979.png)
+
+![image-20250420110210979](/images/image-20250420110210979.png)

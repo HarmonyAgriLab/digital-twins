@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 // 水平 Horizontal
 // 竖 vertical
-import {computed, defineEmits, ref} from "vue";
+import {computed, ref} from "vue";
 import {useDialogStore} from "@/stores/dialog";
 import {nextZIndex} from "@/utils/common";
 

@@ -1,67 +1,78 @@
-<!--
- * @Author: your name
- * @Date: 2022-03-28 16:38:12
- * @LastEditTime: 2022-04-02 18:56:29
- * @LastEditors: zhc
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \DTSWEEKLY_ZHGK\src\Views\OverAll\index.vue
--->
-<!-- OverAll -->
 <template>
   <div class="container">
     <div class="title-bg"/>
     <div class="legend-box">
-      <div class="legend-item" v-for="(item , index ) in legendList" :key="index" @click="handleLegendClick(index)"
-           :class="{active:selectedLegendIndex===index}">{{
-          item.label
-        }}
+      <div
+        class="legend-item"
+        v-for="(item, index) in legendList"
+        :key="index"
+        @click="handleLegendClick(index)"
+        :class="{ active: selectedLegendIndex === index }"
+      >
+        {{ item.label }}
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import _ from "lodash";
-import {onBeforeUnmount, onMounted, ref} from "vue";
-import {getIdByName} from "@/utils";
+import { ref } from 'vue'
 
-const props = defineProps({
-  legendList: {
-    type: Array,
-    default: () => [
-      {
-        label: '风机控制',
+// 定义图例项的类型
+interface LegendItem {
+  label: string
+  isActive?: boolean
+}
 
-      },
-      {
-        label: "灯光控制"
-      }
-    ]
-  },
-})
-const selectedLegendIndex = ref(-1);
+// Props：指定 legendList 的类型为 LegendItem[]
+const props = defineProps<{
+  legendList: LegendItem[]
+}>()
 
+// Emits
+const emit = defineEmits<{
+  (e: 'change', item: LegendItem, index: number, isActive: boolean): void
+}>()
 
-const emits = defineEmits(['change'])
+// 当前激活的图例索引
+const selectedLegendIndex = ref(-1)
+
+// 点击图例项
 const handleLegendClick = (index: number) => {
-  if (selectedLegendIndex.value === index) selectedLegendIndex.value = -1
-  else selectedLegendIndex.value = index;
-  let ele = props.legendList[index]
-  emits('change', ele, index, selectedLegendIndex.value === index)
+  if (selectedLegendIndex.value === index) {
+    selectedLegendIndex.value = -1
+  } else {
+    selectedLegendIndex.value = index
+  }
 
+  // 更新 isActive 状态
+  props.legendList.forEach((item, i) => {
+    item.isActive = i === selectedLegendIndex.value
+  })
+
+  const ele = props.legendList[index]
+  emit('change', ele, index, ele.isActive ?? false)
 }
+
+// 提供外部调用：取消选中
 const cancelSelect = () => {
-  selectedLegendIndex.value !== -1 && handleLegendClick(selectedLegendIndex.value)
+  if (selectedLegendIndex.value !== -1) {
+    handleLegendClick(selectedLegendIndex.value)
+  }
 }
-defineExpose({cancelSelect})
+
+// 暴露方法
+defineExpose({ cancelSelect })
 </script>
+
+
 <style lang="scss" scoped>
 .container {
   @include Width(141);
   @include wHeight(280);
   position: absolute;
   z-index: 1;
-  @include Right(500);
+  @include Right(540);
   @include Bottom(70);
 
   .title-bg {
@@ -87,7 +98,8 @@ defineExpose({cancelSelect})
       cursor: pointer;
       transition: all 0.3s;
 
-      &:hover, &.active {
+      &:hover,
+      &.active {
         background: #287C59;
         border: 1px solid #5AB289;
       }
@@ -95,4 +107,3 @@ defineExpose({cancelSelect})
   }
 }
 </style>
-

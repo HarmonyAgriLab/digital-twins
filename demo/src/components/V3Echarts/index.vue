@@ -94,7 +94,6 @@ watch(
     () => props.options,
     (newval) => {
       if (newval) {
-        // changeEcharts(newval);
       }
 
     },
@@ -103,21 +102,6 @@ watch(
     }
 );
 
-// watch(
-//     () => chartRef.value,
-//     (newval) => {
-//       nextTick(() => {
-//         if (chartRef.value) {
-//           Aecharts.value = markRaw(charts.init(chartRef.value));
-//           changeEcharts(props.options);
-//         }
-//       });
-//     },
-//     {
-//       // deep: true,
-//       immediate: true,
-//     }
-// );
 const Resize = () => {
   Aecharts.value.resize();
 };
