@@ -32,7 +32,7 @@ cd demo
 
 
 
-![image-20250420103915332](images\image-20250420103915332.png)
+![image-20250420103915332](/images/image-20250420103915332.png)
 
 
 
@@ -82,7 +82,7 @@ cd demo
 
 
 
-![image-20250420103915332](images\image-20250420103915332.png)
+![image-20250420103915332](/images/image-20250420103915332.png)
 
 
 
@@ -111,4 +111,4 @@ npm run serve
 
 
 
-![image-20250420110210979](images\image-20250420110210979.png)
+![image-20250420110210979](/images/image-20250420110210979.png)
