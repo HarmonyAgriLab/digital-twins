@@ -32,7 +32,7 @@ cd demo
 
 
 
-![image-20250420103915332](D:\coding\frontEnd\digital-twins\images\image-20250420103915332.png)
+![image-20250420103915332](images\image-20250420103915332.png)
 
 
 
@@ -82,7 +82,7 @@ cd demo
 
 
 
-![image-20250420103915332](D:\coding\frontEnd\digital-twins\images\image-20250420103915332.png)
+![image-20250420103915332](images\image-20250420103915332.png)
 
 
 
@@ -109,6 +109,6 @@ npm run serve
 
 最终效果大致如下：
 
-![image-20250420110157030](D:\coding\frontEnd\digital-twins\images\image-20250420110157030.png)
 
-![image-20250420110210979](D:\coding\frontEnd\digital-twins\images\image-20250420110210979.png)
+
+![image-20250420110210979](images\image-20250420110210979.png)
