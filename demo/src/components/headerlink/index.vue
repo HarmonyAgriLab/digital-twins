@@ -101,6 +101,7 @@ const Link = reactive<LinkItem[]>([
         // icon: 'jianceyujing',
         // img: require('@/assets/images/link/zonlan.png'),
         // activeImg: require('@/assets/images/link/zonlan1.png'),
+        // TODO：/home/test
         children: [ // 添加子链接
             { name: '子链接1', key: 1, path: '/home/Child1' },
             { name: '子链接2', key: 2, path: '/home/Child2' }
@@ -113,10 +114,26 @@ const Link = reactive<LinkItem[]>([
         // icon: 'jianceyujing',
         // img: require('@/assets/images/link/zonlan.png'),
         // activeImg: require('@/assets/images/link/zonlan1.png'),
-        children: [ // 添加子链接
-            { name: '子链接1', key: 1, path: '/home/Child1' },
-            { name: '子链接2', key: 2, path: '/home/Child2' }
-        ]
+        // children: [ // 添加子链接
+        //     { name: '室内', key: 1, path: '/home/shinei' },
+        //     { name: '室外', key: 2, path: '/home/shiwai' }
+        // ]
+    },
+    {
+        name: '室内',
+        key: 3,
+         path: '/home/OverAll/shinei'
+        // icon: 'jianceyujing',
+        // img: require('@/assets/images/link/zonlan.png'),
+        // activeImg: require('@/assets/images/link/zonlan1.png'),
+    },
+    {
+        name: '室外',
+        key: 2,
+        path: '/home/OverAll/shiwai'
+        // icon: 'jianceyujing',
+        // img: require('@/assets/images/link/zonlan.png'),
+        // activeImg: require('@/assets/images/link/zonlan1.png'),
     }
 ]);
 
@@ -145,86 +162,6 @@ onMounted(() => {
 });
 </script>
 
-
-<!-- <script lang="ts" setup>
-import { computed, onMounted, reactive, ref } from 'vue'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
-
-// 路由监听
-onBeforeRouteUpdate(to => {
-    console.log("to is", to);
-    PagePath.value = to.path
-})
-
-const Key = computed(() => {
-    let key = ref()
-    switch (PagePath.value.split('/')[2]) {
-        case 'PedestrianPosture':
-            key.value = 75
-            break
-        case 'SecurityPosture':
-            key.value = 250
-            break
-        case 'ComprehensiveSituational':
-            key.value = 595
-            break
-        case 'CarSituation':
-            key.value = 495
-            break
-        case 'EnergyConsumption':
-            key.value = 195
-            break
-        default:
-            break
-    }
-    return key.value
-})
-
-// 路由信息
-const Link = reactive([
-    {
-        name: '水培架子前',
-        key: 2,
-        path: '/home/ComprehensiveSituational',
-        icon: 'jianceyujing',
-        img: require('@/assets/images/link/zonlan.png'),
-        activeImg: require('@/assets/images/link/zonlan1.png')
-    },
-    {
-        name: '电器厂大门口',
-        key: 3,
-        path: '/home/SecurityPosture',
-        icon: 'rengongzhinengdanao',
-        img: require('@/assets/images/link/jingji.png'),
-        activeImg: require('@/assets/images/link/jingji1.png')
-    }
-])
-
-const Router = useRouter()
-const Route = useRoute()
-const PagePath = ref('')
-
-// 一级路由点击
-const LinkClick = (val: { name: string; key: number; path: string; icon: string }) => {
-    Router.push({
-        path: val.path
-    })
-    PagePath.value = val.path
-}
-
-// 子链接点击
-const MonLinkClick = (mon: { name: string; key: number; path: string }) => {
-    Router.push({
-        path: mon.path
-    })
-    PagePath.value = mon.path
-}
-
-onMounted(() => {
-    PagePath.value = Route.path
-})
-</script> -->
-
 <style lang="scss" scoped>
 .warp {
     position: absolute;
@@ -241,7 +178,7 @@ onMounted(() => {
         right: 0;
         margin: 0 0 0 -100px;
         z-index: 10;
-        @include wHeight(400);
+        @include wHeight(500);
 
         .footer_link {
             position: absolute;
@@ -249,7 +186,7 @@ onMounted(() => {
             right: 0;
             bottom: 0;
             // top: 0;
-            @include Top(40);
+            @include Top(150);  // 
             margin: auto;
             z-index: 10;
             display: flex;

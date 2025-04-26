@@ -1,32 +1,23 @@
-<!--
- * @Author: your name
- * @Date: 2022-03-28 16:38:12
- * @LastEditTime: 2022-04-02 18:56:29
- * @LastEditors: zhc
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \DTSWEEKLY_ZHGK\src\Views\OverAll\index.vue
--->
-<!-- OverAll -->
+
 <template>
-    <template> </template>
-    <Dialog v-if="dialogStore.tag === '巡检无人机'" :tag="dialogStore.tag" :title="dialogStore.tag" :width="420" :height="230">
-        <div class="content">
-            <div class="tuwen" v-if="tabindex">
-                <div class="wen">
-                    <div>名称：巡检无人机</div>
-                    <div>编号：xj2022061401</div>
-                    <div>电量：80%</div>
-                    <div>已巡检：30km</div>
-                    <div>状态：正常</div>
-                    <div>上次检修时间：2022/7/14</div>
-                </div>
-                <img src="@/assets/images/dialog/kang.png" alt="" @click="tabfn(false)" />
+<Dialog v-show="true" :tag="dialogStore.tag" :title="dialogStore.tag" :width="420" :height="230">
+    <div class="content">
+        <div class="tuwen" v-if="tabindex">
+            <div class="wen">
+                <div>名称：巡检无人机</div>
+                <div>编号：xj2022061401</div>
+                <div>电量：80%</div>
+                <div>已巡检：30km</div>
+                <div>状态：正常</div>
+                <div>上次检修时间：2022/7/14</div>
             </div>
-            <video width="300" height="180" @click="tabfn(true)" v-if="!tabindex" autoplay loop muted>
-                <source src="@/assets/video/kang.mp4" type="video/mp4" />
-            </video>
+            <img src="@/assets/images/dialog/kang.png" alt="" @click="tabfn(false)" />
         </div>
-    </Dialog>
+        <video width="300" height="180" @click="tabfn(true)" v-if="!tabindex" autoplay loop muted>
+            <source src="@/assets/video/kang.mp4" type="video/mp4" />
+        </video>
+    </div>
+</Dialog>
 </template>
 
 <script lang="ts" setup>
@@ -34,8 +25,11 @@ import _ from 'lodash'
 import { useDialogStore } from '@/stores/dialog'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Dialog from '@/components/Dialog/index.vue'
-import { getIdByName } from '@/utils'
+// import { getIdByName } from '@/utils'
 const dialogStore = useDialogStore()
+
+let str = ref('hello');
+
 let moveList = [
     [
         [-2385.974854, -3555.39502, -13.758945],
@@ -464,17 +458,20 @@ onBeforeUnmount(() => {
     __g.camera.stopAnimation()
 })
 onMounted(async () => {
-    await __g.infoTree.hide(getIdByName('智慧农业_底图'))
-    await __g.infoTree.hide(getIdByName(['中国地图', '智慧农业灯光控制', '智慧农业灌溉喷水', '智慧农业_底图环境', '智慧环境后期盒子', '智慧农业环境反射', '智慧农业环境雾效', '中国地图环境光']))
+    // await __g.infoTree.hide(getIdByName('智慧农业_底图'))
+    // await __g.infoTree.hide(getIdByName(['中国地图', '智慧农业灯光控制', '智慧农业灌溉喷水', '智慧农业_底图环境', '智慧环境后期盒子', '智慧农业环境反射', '智慧农业环境雾效', '中国地图环境光']))
    await  __g.camera.stopAnimation()
    await  __g.camera.playAnimation(12)
     dialogStore.setDialogVisible(false)
+    console.log(`${str}`)
     move()
     setTimeout(async() => {
         await __g.camera.stopAnimation()
     }, 1000)
 })
+
 </script>
+
 <style lang="scss" scoped>
 .content {
     @include FontSize(14);
@@ -502,3 +499,42 @@ onMounted(async () => {
     }
 }
 </style>
+
+
+<!-- 
+├── Template 模板层
+│   ├── Dialog 弹窗容器
+│   │   ├── 图文模式 (v-if="tabindex")
+│   │   │   ├── 无人机状态信息
+│   │   │   └── 缩略图（点击切换模式）
+│   │   └── 视频模式 (v-if="!tabindex")
+│   │       └── 视频播放器（点击切换模式）
+│
+├── Script 逻辑层
+│   ├── 核心功能
+│   │   ├── moveList：无人机路径坐标数据集（5条巡检路线）
+│   │   ├── tabindex：响应式状态控制显示模式
+│   │   ├── tabfn()：切换图文/视频模式的触发函数
+│   │   ├── getStartMoveFunc()：生成平滑移动轨迹数据
+│   │   ├── move()：核心移动逻辑
+│   │   │   ├── 添加无人机3D模型
+│   │   │   ├── 添加路径标记物
+│   │   │   └── 启动移动动画
+│   │   └── 生命周期
+│   │       ├── onMounted：组件挂载时初始化逻辑
+│   │       └── onBeforeUnmount：组件销毁时清理资源
+│   └── 依赖项
+│       ├── Lodash 工具库
+│       ├── Pinia 状态管理（dialogStore）
+│       └── 第三方可视化引擎接口（__g对象）
+│
+└── Style 样式层
+    └── SCSS样式模块
+        ├── 弹窗内容布局
+        ├── 图文模式混合排版
+        └── 视频播放器适配
+
+
+
+
+-->

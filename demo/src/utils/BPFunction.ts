@@ -6,193 +6,183 @@
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \DTSWeekly_zhyq\src\utils\BPFunction.ts
  */
+
+// 定义一个蓝图函数 BPFunction
 export const BPFunction = (val: any) => {
-  const f = new BPFunctionData();
-  f.objectName = "BP_SkyMaterial_4";
-  f.functionName = "SetSkyMat";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = "mat" + val;
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "BP_SkyMaterial_4"; // 设置目标对象名
+  f.functionName = "SetSkyMat"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = "mat" + val; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
+
+// 定义一个蓝图函数 BPFunction_Xray
 export const BPFunction_Xray = (val: any) => {
-  const f = new BPFunctionData();
-  f.objectName = "suidao_3";
-  f.functionName = "setXlight";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = "True";
-  __g.misc.callBPFunction(f);
-  // 4EF36D7A4ED2BD3268CF5CB49132A0BC
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "suidao_3"; // 设置目标对象名
+  f.functionName = "setXlight"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = "True"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-// export const BPFunction_jlg = (boolen: boolean) => {
-// 	const f = new BPFunctionData();
-// 	f.objectName = "JLG_C_1";
-// 	f.functionName = "setJLG";
-// 	f.paramType = BPFuncParamType.String;
-// 	f.paramValue = boolen ? "True" : "False";
-// 	__g.misc.callBPFunction(f);
-// };
+
+// 定义一个蓝图函数 BPFunction_hwzz
 export const BPFunction_hwzz = (boolen: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "texiao_C_2";
-  f.functionName = "C";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = boolen ? "True" : "False";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "texiao_C_2"; // 设置目标对象名
+  f.functionName = "C"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = boolen ? "True" : "False"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
 
-//入口抬杆
+// 定义入口抬杆函数 BPFunction_taiGanJin
 export const BPFunction_taiGanJin = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "BP_taigan_2";
-  f.functionName = "JIN";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "True" : "False";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "BP_taigan_2"; // 设置目标对象名
+  f.functionName = "JIN"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "True" : "False"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-//出口抬杆
+
+// 定义出口抬杆函数 BPFunction_taiGanChu
 export const BPFunction_taiGanChu = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "BP_taigan_2";
-  f.functionName = "CHU";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "True" : "False";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "BP_taigan_2"; // 设置目标对象名
+  f.functionName = "CHU"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "True" : "False"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-//防疫-人
+
+// 定义防疫-人函数 BPFunction_bpPeople1
 export const BPFunction_bpPeople1 = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "BP_People1_6";
-  f.functionName = "SETPEOPLE";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "True" : "False";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "BP_People1_6"; // 设置目标对象名
+  f.functionName = "SETPEOPLE"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "True" : "False"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
 
-//防疫-门
+// 定义防疫-门函数 BPFunction_bpDoor
 export const BPFunction_bpDoor = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "open_door_C_4";
-  f.functionName = "SETDOOR";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "True" : "False";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "open_door_C_4"; // 设置目标对象名
+  f.functionName = "SETDOOR"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "True" : "False"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
 
+// 定义当前函数 BPFunction_current
 export const BPFunction_current = (boolen: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "bp_dx_2";
-  f.functionName = "SetDX";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = boolen ? "Play" : "OFF";
-  __g.misc.callBPFunction(f);
-  // const f = new BPFunctionData();
-  // f.objectName = "bp_dx_2";
-  // f.functionName = "Set DX";
-  // f.paramType = BPFuncParamType.String;
-  // f.paramValue = boolen ? "True" : "False";
-  // __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "bp_dx_2"; // 设置目标对象名
+  f.functionName = "SetDX"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = boolen ? "Play" : "OFF"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
 
+// 定义拆光伏函数 BPFunction_chai_guang_fu
 export const BPFunction_chai_guang_fu = (boolen: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "chaigf_5";
-  f.functionName = "SETGF";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = boolen ? "开" : "合";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "chaigf_5"; // 设置目标对象名
+  f.functionName = "SETGF"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = boolen ? "开" : "合"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
 
+// 定义旋转函数 BPFunction_xuan_zhuan
 export const BPFunction_xuan_zhuan = (val: number) => {
-  const f = new BPFunctionData();
-  f.objectName = "bp_fy_5";
-  f.functionName = "SETYP";
-  f.paramType = BPFuncParamType.Float;
-  f.paramValue = val;
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "bp_fy_5"; // 设置目标对象名
+  f.functionName = "SETYP"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.Float; // 设置参数类型为浮点数
+  f.paramValue = val; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
+
+// 定义破解函数 BPFunction_po_jie
 export const BPFunction_po_jie = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "bp_FDJ_2";
-  f.functionName = "SetOP";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "显" : "隐";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "bp_FDJ_2"; // 设置目标对象名
+  f.functionName = "SetOP"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "显" : "隐"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
+
+// 定义拆解函数 BPFunction_chai_jie
 export const BPFunction_chai_jie = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "bp_FDJ_2";
-  f.functionName = "SetCJ";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "开" : "合";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "bp_FDJ_2"; // 设置目标对象名
+  f.functionName = "SetCJ"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "开" : "合"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-// 公共安全道路病害
+
+// 定义公共安全道路病害函数 BPFunction_DLBH
 export const BPFunction_DLBH = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "bp_lz_2";
-  f.functionName = "SETdlbh";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "true" : "false";
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "bp_lz_2"; // 设置目标对象名
+  f.functionName = "SETdlbh"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "true" : "false"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-// 停车占比
+
+// 定义停车占比函数 BPFunction_TCZB
 export const BPFunction_TCZB = (bool: boolean) => {
-  const f = new BPFunctionData();
-  f.objectName = "bp_tcc_8";
-  f.functionName = "Tccsz";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = bool ? "开" : "合";
-
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "bp_tcc_8"; // 设置目标对象名
+  f.functionName = "Tccsz"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = bool ? "开" : "合"; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
 
+// 定义 LWWG 函数 BPFunction_LWWG
 export const BPFunction_LWWG = (num: number) => {
-  const f = new BPFunctionData();
-  f.objectName = "zzjt_ftlwwg_C_12";
-  f.functionName = "Setmaterials";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = num.toString();
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "zzjt_ftlwwg_C_12"; // 设置目标对象名
+  f.functionName = "Setmaterials"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = num.toString(); // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-//  marker
-//window rangin
 
-//智慧农业灯光
+// 定义智慧农业灯光函数 BPFunction_zhny_dg
 export const BPFunction_zhny_dg = (num: number) => {
-  const f = new BPFunctionData();
-  f.objectName = "ZHNY_DG_BP_2";
-  f.functionName = "SetQD";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = num.toString();
-  // console.log(__g.misc.callBPFunction(f));
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "ZHNY_DG_BP_2"; // 设置目标对象名
+  f.functionName = "SetQD"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = num.toString(); // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
+
+// 定义智慧农业通风函数 BPFunction_zhny_tf
 export const BPFunction_zhny_tf = (num: number) => {
-  const f = new BPFunctionData();
-  f.objectName = "ZHNY_TF_BP_2";
-  f.functionName = "SetMat";
-  f.paramType = BPFuncParamType.String;
-  f.paramValue = num.toString();
-  __g.misc.callBPFunction(f);
-
-  //
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "ZHNY_TF_BP_2"; // 设置目标对象名
+  f.functionName = "SetMat"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.String; // 设置参数类型为字符串
+  f.paramValue = num.toString(); // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
+
+// 定义智慧农业风速函数 BPFunction_zhny_fs
 export const BPFunction_zhny_fs = (num: number) => {
-  const f = new BPFunctionData();
-  f.objectName = "ZHNY_FS_BP_2";
-  f.functionName = "FYXZ";
-  f.paramType = BPFuncParamType.Float;
-  f.paramValue = num;
-  __g.misc.callBPFunction(f);
+  const f = new BPFunctionData(); // 创建蓝图函数调用对象
+  f.objectName = "ZHNY_FS_BP_2"; // 设置目标对象名
+  f.functionName = "FYXZ"; // 设置调用的函数名
+  f.paramType = BPFuncParamType.Float; // 设置参数类型为浮点数
+  f.paramValue = num; // 设置参数值
+  __g.misc.callBPFunction(f); // 调用蓝图函数
 };
-
-
-/*
-每个 BPFunction_XXX 函数其实做的事情都一样：
-创建一个蓝图函数调用对象（BPFunctionData）；
-填写目标对象名（objectName）；
-指定调用的函数名（functionName）；
-指定参数类型和参数值；
-通过 __g.misc.callBPFunction(f) 进行调用。
-这个 __g 是一个全局对象，应该是平台提供的 API，callBPFunction 就是远程调用蓝图函数的桥梁.
-*/

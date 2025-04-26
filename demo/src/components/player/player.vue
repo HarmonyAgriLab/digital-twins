@@ -5,7 +5,19 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue'
+import { useAirCityStore } from '@/stores/aircity'
+import { useDialogStore } from '@/stores/dialog'
+
+const useDialog = useDialogStore()
+const AirCitystore = useAirCityStore()
+
+let aircityApi = ref()
+let aircityPlayer = ref()
+
+const loadingText = ref('系统正在加载......')
+const loading = ref(true)
+const reTimer = ref()
 
 const initInterface = (isclound: boolean) => {
     var apiOnReady = false;
@@ -23,11 +35,18 @@ const initInterface = (isclound: boolean) => {
 
     var demoPlayer = new AirCityPlayer('127.0.0.1:8080', options);
     var airCityApi = demoPlayer.getAPI();
+
 }
 
 onMounted(() => {
     initInterface(true);
 })
+
+onUnmounted(() => {
+    aircityPlayer.value && aircityPlayer.value.destroy()
+    aircityApi.value && aircityApi.value.destroy()
+})
+
 </script>
 
 <style lang="scss" scoped>
