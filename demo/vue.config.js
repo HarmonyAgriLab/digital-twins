@@ -16,6 +16,23 @@ module.exports = {
         // 设置端口号
         port: 8090,
         // 移除 overlay 属性
+        proxy: {
+            '/air': {
+                target: 'http://189.1.245.236:8000',
+                changeOrigin: true,
+                pathRewrite: { '^/air': '/air' }
+            },
+            '/soil': {
+                target: 'http://189.1.245.236:8000',
+                changeOrigin: true,
+                pathRewrite: { '^/soil': '/soil' }
+            },
+            '/controll': { // 新增 controll 代理，包含所有 /controll/xxx 路径
+                target: 'http://189.1.245.236:8000',
+                changeOrigin: true,
+                pathRewrite: { '^/controll': '/controll' }
+            }
+        }
     },
     // CSS 配置
     css: {

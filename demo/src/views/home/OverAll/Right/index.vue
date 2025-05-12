@@ -24,10 +24,10 @@
 
     <div class="contentBrief">
       <BgBox :height="120" :width="500" title="土壤PH & NPK（简要）">
-        <p>温度：18.2°C</p>
-        <p>电导率：0.9 ms/cm</p>
-        <p>PH：6.8</p>
-        <p>N：45 ppm，P：12 ppm，K：33 ppm</p>
+        <p>温度：{{ latestSoilData.temperature }}°C</p>
+        <p>电导率：{{ latestSoilData.conductivity }} ms/cm</p>
+        <p>PH：{{ latestSoilData.ph }}</p>
+        <p>N：{{ latestSoilData.n }} ppm，P：{{ latestSoilData.p }} ppm，K：{{ latestSoilData.k }} ppm</p>
       </BgBox>
     </div>
 
@@ -82,6 +82,7 @@ import {optionAirTemperature,optionAirHumidity } from "./echartsOpt";
 import V3Echarts from "@/components/V3Echarts/index.vue";
 import BgBox from "@/components/bgBox/index.vue";
 import { optionSoilStacked, optionTempLine, optionConductivityLine, optionPhGauge, optionNpkBar } from "./echartsOpt";
+import { getSoilData } from '@/api/backend'
 
 const showAir = ref(true); // true: 空气，false: 土壤
 
@@ -95,9 +96,46 @@ const toggleSoil = () => {
   console.log("showAir", showAir.value);
 };
 
-onMounted(() => {
+// 定义响应式变量存储最新数据
+const latestSoilData = ref({
+  temperature: 0,
+  conductivity: 0,
+  ph: 0,
+  n: 0,
+  p: 0,
+  k: 0
+});
+
+onMounted(async () => {
   console.log('组件挂载成功');
-  // toggleSoil()
+  try {
+    const res = await getSoilData();
+    // 获取最新的一条数据（数组第一条）
+    const latest = res.data[0];
+    
+    // 打印原始数据
+    console.log('原始数据:', latest);
+    
+    // 打印每个具体字段
+    console.log('土壤温度:', latest.temperature_value);
+    console.log('土壤电导率:', latest.conductivity_value);
+    console.log('土壤PH值:', latest.pH_value);
+    console.log('N值:', latest.nitrogen);
+    console.log('P值:', latest.phosphorus);
+    console.log('K值:', latest.potassium);
+    
+    // 更新响应式数据
+    latestSoilData.value = {
+      temperature: latest.temperature_value || 0,
+      conductivity: latest.conductivity_value || 0,
+      ph: latest.pH_value || 0,
+      n: latest.nitrogen || 0,
+      p: latest.phosphorus || 0,
+      k: latest.potassium || 0
+    };
+  } catch (error) {
+    console.error('获取土壤数据失败:', error);
+  }
 });
 
 

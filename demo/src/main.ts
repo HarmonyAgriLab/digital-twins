@@ -43,4 +43,3 @@ app
 .use(pinia)
 .use(router)
 .mount('#app')// 注册全局组件 LeaseTitle
-  
