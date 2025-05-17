@@ -6,7 +6,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router/index'
 import store from './stores'
-
+import 'element-plus/dist/index.css'
 // 引入全局样式
 import "@/assets/scss/rest.scss";
 import "@/assets/scss/global.scss";
@@ -23,8 +23,6 @@ import floatButton from '@/components/floatButton/index.vue'
 
 import drag from '@/utils/drag'
 
-
-
 const app = createApp(App)
 const pinia = createPinia()
 
@@ -32,6 +30,16 @@ const pinia = createPinia()
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+app.config.errorHandler = (err, vm, info) => {
+  console.error("Vue errorHandler:", err, info);
+};
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.error("Unhandled promise rejection:", event.reason);
+});
+
+
 
 app
 .component("RightBox", RightBox) // 注册全局组件 RightBox
