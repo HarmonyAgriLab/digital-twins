@@ -1,6 +1,8 @@
 
 <template>
-<Dialog v-show="true" :tag="dialogStore.tag" :title="dialogStore.tag" :width="420" :height="230">
+    
+        
+<Dialog v-show="true" :width="420" :height="230">
     <div class="content">
         <div class="tuwen" v-if="tabindex">
             <div class="wen">
@@ -25,10 +27,106 @@ import _ from 'lodash'
 import { useDialogStore } from '@/stores/dialog'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import Dialog from '@/components/Dialog/index.vue'
-// import { getIdByName } from '@/utils'
 const dialogStore = useDialogStore()
 
 let str = ref('hello');
+
+const tabindex = ref(true)
+const tabfn = (bool: boolean) => {
+    tabindex.value = bool
+}
+const getStartMoveFunc = (cordArr: any[], height: number, interval = 2) => {
+    return cordArr.map((item, index) => ({
+        time: index * interval,
+        coordinate: [item[0], item[1], height || item[2]]
+    }))
+}
+
+onMounted(async () => {
+   await  __g.camera.stopAnimation()
+   await  __g.camera.playAnimation(12)
+    dialogStore.setDialogVisible(true)
+    dialogStore.setTag(`无人机巡检`)
+    dialogStore.setXY([1900, 149])
+
+    console.log(`${str}`)
+    move()
+    setTimeout(async() => {
+        console.log(`${ dialogStore.tag}`)
+        // await __g.camera.stopAnimation()
+    }, 1000)
+})
+
+onBeforeUnmount(() => {
+    console.log('外关')
+    __g.customObject.clear()
+    __g.camera.stopAnimation()
+})
+
+
+
+const move = () => {
+    moveList.forEach(async (item, index) => {
+        await __g.customObject.add([
+            {
+                id: 'wrj-' + index, //自定义对象唯一id
+                pakFilePath: '@path:DTS_Library.pak', //pak文件路径
+                assetPath: '/JC_CustomAssets/ObjectLibrary/Exhibition/交通工具/其他/无人机_1', //资源目录，自定义对象在pak文件资源包里的相对路径
+                location: [item[0][0], item[0][1], 30], //位置坐标
+                coordinateType: 0, // 坐标系类型
+                rotation: [0, 0, 0], //旋转
+                scale: [10, 10, 10], //缩放
+                smoothMotion: 1 //1: 平滑插值，0: 跳跃
+            },
+            {
+                id: 'wrjArea-' + index, //自定义对象唯一id
+                pakFilePath: '@path:智慧农业/智慧农业无人机底下发光.pak', //pak文件路径
+                assetPath: '/Game/Developers/CL/Project/BP/WRJ_BP', //资源目录，自定义对象在pak文件资源包里的相对路径
+                location: [item[0][0], item[0][1], -10], //位置坐标
+                coordinateType: 0, // 坐标系类型
+                rotation: [0, 0, 0], //旋转
+                scale: [1000, 1000, 1000], //缩放
+                smoothMotion: 1 //1: 平滑插值，0: 跳跃
+            }
+        ])
+
+        await __g.marker.add([
+            {
+                id: 'markerArea-' + index,
+                groupID: '巡检无人机',
+                coordinate: [495438.53125, 2490905.75, 2], //坐标位置
+                coordinateType: 0, //默认0是投影坐标系，也可以设置为经纬度空间坐标系值为1
+                anchors: [-35, 40], //锚点
+                range: [0, 10000], //可视范围路径
+                fixedSize: true, //图片固定尺寸，取值范围：false 自适应，近大远小，true 固定尺寸，默认值：false
+                imagePath: window.origin + require('@/assets/images/marker/marker.png'), //图片路径
+                imageSize: [70, 30], //图片尺寸
+                text: '巡检无人机', //显示的文字
+                useTextAnimation: false, //打开文字展开动画效果
+                textRange: [0, 10000], //文本可视范围[近裁距离, 远裁距离]
+                textOffset: [-70, -5], // 文本偏移
+                textBackgroundColor: [0, 0, 0, 0], //文本背景颜色
+                fontSize: 10, //字体大小
+                fontOutlineSize: 1, //字体轮廓线大小
+                fontColor: [1, 1, 1, 1], //字体颜色
+                autoHeight: false, // 自动判断下方是否有物体
+                displayMode: 2, //显示模式
+                priority: 0, //避让优先级
+                occlusionCull: false //是否参与遮挡剔除
+            }
+        ])
+        __g.customObject.startMove('wrj-' + index, 0, getStartMoveFunc(item, 30, 1))
+        __g.customObject.startMove('wrjArea-' + index, 0, getStartMoveFunc(item, -15, 1))
+
+        __g.marker.setAttachCustomObject([
+            {
+                markerId: 'markerArea-' + index, //标注id
+                objectId: 'wrj-' + index, //自定义对象id
+                offset: [0, 0, 0] //偏移量
+            }
+        ])
+    })
+}
 
 let moveList = [
     [
@@ -380,95 +478,6 @@ let moveList = [
         [-2535.748291, -3404.179688, -13.74836]
     ]
 ]
-const tabindex = ref(true)
-const tabfn = (bool: boolean) => {
-    tabindex.value = bool
-}
-const getStartMoveFunc = (cordArr: any[], height: number, interval = 2) => {
-    return cordArr.map((item, index) => ({
-        time: index * interval,
-        coordinate: [item[0], item[1], height || item[2]]
-    }))
-}
-const move = () => {
-    moveList.forEach(async (item, index) => {
-        await __g.customObject.add([
-            {
-                id: 'wrj-' + index, //自定义对象唯一id
-                pakFilePath: '@path:DTS_Library.pak', //pak文件路径
-                assetPath: '/JC_CustomAssets/ObjectLibrary/Exhibition/交通工具/其他/无人机_1', //资源目录，自定义对象在pak文件资源包里的相对路径
-                location: [item[0][0], item[0][1], 30], //位置坐标
-                coordinateType: 0, // 坐标系类型
-                rotation: [0, 0, 0], //旋转
-                scale: [10, 10, 10], //缩放
-                smoothMotion: 1 //1: 平滑插值，0: 跳跃
-            },
-            {
-                id: 'wrjArea-' + index, //自定义对象唯一id
-                pakFilePath: '@path:智慧农业/智慧农业无人机底下发光.pak', //pak文件路径
-                assetPath: '/Game/Developers/CL/Project/BP/WRJ_BP', //资源目录，自定义对象在pak文件资源包里的相对路径
-                location: [item[0][0], item[0][1], -10], //位置坐标
-                coordinateType: 0, // 坐标系类型
-                rotation: [0, 0, 0], //旋转
-                scale: [1000, 1000, 1000], //缩放
-                smoothMotion: 1 //1: 平滑插值，0: 跳跃
-            }
-        ])
-
-        await __g.marker.add([
-            {
-                id: 'markerArea-' + index,
-                groupID: '巡检无人机',
-                coordinate: [495438.53125, 2490905.75, 2], //坐标位置
-                coordinateType: 0, //默认0是投影坐标系，也可以设置为经纬度空间坐标系值为1
-                anchors: [-35, 40], //锚点
-                range: [0, 10000], //可视范围路径
-                fixedSize: true, //图片固定尺寸，取值范围：false 自适应，近大远小，true 固定尺寸，默认值：false
-                imagePath: window.origin + require('@/assets/images/marker/marker.png'), //图片路径
-                imageSize: [70, 30], //图片尺寸
-                text: '巡检无人机', //显示的文字
-                useTextAnimation: false, //打开文字展开动画效果
-                textRange: [0, 10000], //文本可视范围[近裁距离, 远裁距离]
-                textOffset: [-70, -5], // 文本偏移
-                textBackgroundColor: [0, 0, 0, 0], //文本背景颜色
-                fontSize: 10, //字体大小
-                fontOutlineSize: 1, //字体轮廓线大小
-                fontColor: [1, 1, 1, 1], //字体颜色
-                autoHeight: false, // 自动判断下方是否有物体
-                displayMode: 2, //显示模式
-                priority: 0, //避让优先级
-                occlusionCull: false //是否参与遮挡剔除
-            }
-        ])
-        __g.customObject.startMove('wrj-' + index, 0, getStartMoveFunc(item, 30, 1))
-        __g.customObject.startMove('wrjArea-' + index, 0, getStartMoveFunc(item, -15, 1))
-
-        __g.marker.setAttachCustomObject([
-            {
-                markerId: 'markerArea-' + index, //标注id
-                objectId: 'wrj-' + index, //自定义对象id
-                offset: [0, 0, 0] //偏移量
-            }
-        ])
-    })
-}
-onBeforeUnmount(() => {
-    console.log('外关')
-    __g.customObject.clear()
-    __g.camera.stopAnimation()
-})
-onMounted(async () => {
-    // await __g.infoTree.hide(getIdByName('智慧农业_底图'))
-    // await __g.infoTree.hide(getIdByName(['中国地图', '智慧农业灯光控制', '智慧农业灌溉喷水', '智慧农业_底图环境', '智慧环境后期盒子', '智慧农业环境反射', '智慧农业环境雾效', '中国地图环境光']))
-   await  __g.camera.stopAnimation()
-   await  __g.camera.playAnimation(12)
-    dialogStore.setDialogVisible(false)
-    console.log(`${str}`)
-    move()
-    setTimeout(async() => {
-        await __g.camera.stopAnimation()
-    }, 1000)
-})
 
 </script>
 
