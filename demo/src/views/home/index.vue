@@ -1,21 +1,26 @@
-<template>
+< <template>
     <!-- 播放器组件 -->
     <div>
-        <Player />
+        
+        <!-- <Player /> -->
         <router-view/>
         <HeaderLink/>
         <Header v-if="!UIShow" />
+        <img :src="defaultImg" alt="default image">
     </div>
    
-</template>
+</template> 
 <script lang="ts" setup>
 // 显示组件
+// EDTS各种模型项目最终default.png
 import Player from '@/components/player/player.vue'
 import HeaderLink from '@/components/headerlink/index.vue'
 import Header from '@/components/header/index.vue'
+import defaultImg from '@/assets/default.png'
+
 
 // 导入计算属性和挂载钩子
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 
 // 导入工具状态管理仓库
 import { useToolsStore } from '@/stores/tools'
