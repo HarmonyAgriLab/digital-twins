@@ -1,10 +1,4 @@
 <template>
-  <!--  <transition-->
-  <!--      appear-->
-  <!--      name="custom-classes-transition"-->
-  <!--      enter-active-class="animate__animated animate__faster  animate__fadeInRight "-->
-  <!--      leave-active-class="animate__animated animate__faster animate__fadeOutRight "-->
-  <!--  >-->
   <transition name="el-fade-in-linear">
     <div
         v-drag
@@ -116,12 +110,13 @@ const dialogVisible = computed(() => {
 
 <style lang="scss" scoped>
 .preViewBox {
-  // border: 1px solid #ccc;
+
   position: fixed;
-  //@include boxLeft(v-bind('props.XY[0]'));
-  //@include boxTop(v-bind('props.XY[1]'));
+// weight: v-bind("props.width") px;
   @include boxWidth(v-bind("props.width"));
   @include boxwHeight(v-bind("props.height"));
+
+// height: v-bind("props.height") px;
   z-index: 99;
   background: url("~@/assets/images/dialog/popuo_bg@2x.png") no-repeat center/cover;
   font-family: Oppo, serif;
