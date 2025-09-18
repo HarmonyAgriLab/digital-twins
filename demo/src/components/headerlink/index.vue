@@ -97,15 +97,15 @@ const Link = reactive<LinkItem[]>([
     {
         name: '首页',
         key: 1,
-        path: '/home/test',
+        path: '/home',
         // icon: 'jianceyujing',
         // img: require('@/assets/images/link/zonlan.png'),
         // activeImg: require('@/assets/images/link/zonlan1.png'),
         // TODO：/home/test
-        children: [ // 添加子链接
-            { name: '子链接1', key: 1, path: '/home/Child1' },
-            { name: '子链接2', key: 2, path: '/home/Child2' }
-        ]
+        // children: [ // 添加子链接
+        //     { name: '子链接1', key: 1, path: '/home/Child1' },
+        //     { name: '子链接2', key: 2, path: '/home/Child2' }
+        // ]
     },
     {
         name: '种植情况',

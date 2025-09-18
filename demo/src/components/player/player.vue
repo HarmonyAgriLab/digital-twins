@@ -19,6 +19,8 @@ const loadingText = ref('系统正在加载......')
 const loading = ref(true)
 const reTimer = ref()
 
+
+// TODO: 资源加载不出来，很有可能是这个原因，先从helloWorld开始，一点一点熟悉这整个架构
 const initInterface = (isclound: boolean) => {
     var apiOnReady = false;
 
