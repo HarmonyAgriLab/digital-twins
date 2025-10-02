@@ -53,8 +53,8 @@ onMounted(async () => {
     move()
     setTimeout(async() => {
         console.log(`${ dialogStore.tag}`)
-        // await __g.camera.stopAnimation()
     }, 1000)
+
 })
 
 onBeforeUnmount(() => {

@@ -14,12 +14,11 @@ import "@/assets/scss/normalize.scss";
 
 // 导入全局组件
 import Icon from "@/components/Icon/index.vue";
-import LeaseTitle from '@/components/Lease_title/index.vue'
-import SubTitle from '@/components/SubTitle/SubTitle.vue'
 import V3Echarts from '@/components/V3Echarts/index.vue'
 import RightBox from '@/components/right_box.vue'
-import floatButton from '@/components/floatButton/index.vue'
-
+// import floatButton from '@/components/floatButton/index.vue'
+// import LeaseTitle from '@/components/Lease_title/index.vue'
+// import SubTitle from '@/components/SubTitle/SubTitle.vue'
 
 import drag from '@/utils/drag'
 

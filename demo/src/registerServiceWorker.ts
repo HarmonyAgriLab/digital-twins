@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+// 一份创建vue时自带的文件，一般而言不需要修改
 import { register } from 'register-service-worker'
 
 if (process.env.NODE_ENV === 'production') {

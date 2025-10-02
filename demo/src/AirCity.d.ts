@@ -1,3 +1,6 @@
+// 这个文件的作用是为整个 AirCity 项目提供类型支持和全局变量的声明，使得在 TypeScript 开发中能够获得更好的代码提示和类型检查功能。
+// 全局变量声明的地方。
+
 declare let AirCityPlayer: any;
 declare let $: any;
 // declare var userInfo: any;

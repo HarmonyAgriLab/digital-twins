@@ -1,12 +1,18 @@
-< <template>
+<template>
     <!-- 播放器组件 -->
     <div>
-        
-        <!-- <Player /> -->
+        <!-- <img :src="defaultImg" alt="default image"> -->
+        <Player />
         <router-view/>
         <HeaderLink/>
         <Header v-if="!UIShow" />
-        <img :src="defaultImg" alt="default image">
+        <transition appear name="custom-classes-transition" enter-active-class="animate__animated  animate__fadeInDown" leave-active-class="animate__animated  animate__fadeOutUp">
+        <div class="back" @click="back" v-if="UIShow">
+            <el-tooltip class="box-item" effect="dark" content="返回" placement="bottom">
+                <Icon :color="UIShow ? '#7afafe' : '#fff'" :font-size="30" icon="back" />
+            </el-tooltip>
+        </div>
+         </transition>
     </div>
    
 </template> 
@@ -16,11 +22,10 @@
 import Player from '@/components/player/player.vue'
 import HeaderLink from '@/components/headerlink/index.vue'
 import Header from '@/components/header/index.vue'
-import defaultImg from '@/assets/default.png'
-
+// import defaultImg from '@/assets/default.png'
 
 // 导入计算属性和挂载钩子
-import { computed } from 'vue'
+import { computed,onMounted } from 'vue'
 
 // 导入工具状态管理仓库
 import { useToolsStore } from '@/stores/tools'
@@ -36,14 +41,20 @@ const ToolsStore = useToolsStore()
 const UIShow = computed(() => ToolsStore.$state.UIShow)
 
 // 返回按钮的点击处理函数：设置UIShow为false，隐藏UI，并调用全局设置隐藏主UI的函数
-// const back = () => {
-//     const val = !UIShow.value
-//     ToolsStore.$state.UIShow = false
-//     __g.settings.setMainUIVisibility(false)
-// }
+const back = () => {
+    const val = !UIShow.value
+    ToolsStore.$state.UIShow = false
+    __g.settings.setMainUIVisibility(false)
+}
 
 </script>
 
 <style lang="scss" scoped>
-
+.back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  cursor: pointer;
+}
 </style>
