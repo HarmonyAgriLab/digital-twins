@@ -7,10 +7,10 @@
  * @FilePath: \DTSWEEKLY_ZHGK\src\utils\index.js
  */
 import {onBeforeUnmount} from "vue";
-import {useAirCityStore} from "@/stores/aircity";
+// import {useAirCityStore} from "@/stores/aircity";
 import _ from "lodash";
 
-const airCityStore = useAirCityStore();
+// const airCityStore = useAirCityStore();
 const waitFor = (timeout = 100) => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
@@ -86,26 +86,26 @@ const startMarquee = (
  */
 const getIdByName = (name: string | string[]): any => {
 	// 添加空值保护
-	if (!airCityStore.TreeInfo) {
-	  console.error('TreeInfo 数据未初始化')
-	  return Array.isArray(name) ? [] : ''
-	}
+	// if (!airCityStore.TreeInfo) {
+	//   console.error('TreeInfo 数据未初始化')
+	//   return Array.isArray(name) ? [] : ''
+	// }
   
-	if (Array.isArray(name)) {
-	  const len = name.length
-	  const result: any = new Array(len).fill('')
-	  // 使用可选链操作符
-	  airCityStore.TreeInfo?.forEach((item: { name: string; iD: any }) => {
-		const indexOf = name.indexOf(item.name)
-		if (indexOf > -1) {
-		  result[indexOf] = item.iD
-		}
-	  })
-	  return result
-	} else {
-	  // 使用 Lodash 的 find 方法并添加类型保护
-	  return _.find(airCityStore.TreeInfo, (item: any) => item.name === name)?.iD || ''
-	}
+	// if (Array.isArray(name)) {
+	//   const len = name.length
+	//   const result: any = new Array(len).fill('')
+	//   // 使用可选链操作符
+	//   airCityStore.TreeInfo?.forEach((item: { name: string; iD: any }) => {
+	// 	const indexOf = name.indexOf(item.name)
+	// 	if (indexOf > -1) {
+	// 	  result[indexOf] = item.iD
+	// 	}
+	//   })
+	//   return result
+	// } else {
+	//   // 使用 Lodash 的 find 方法并添加类型保护
+	//   return _.find(airCityStore.TreeInfo, (item: any) => item.name === name)?.iD || ''
+	// }
   }
 /**
  *

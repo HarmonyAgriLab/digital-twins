@@ -40,7 +40,7 @@ const ManageResult = {
   StartInstance_Locked: 804, //无法修改已锁定的实例
 };
 
-// 获取ws地址
+// 获取ws地址：为了建立websocket连接
 const getWebSocketUrl = () => {
   const Url = HostConfig.PlayerMapping
     ? HostConfig.PlayerMapping

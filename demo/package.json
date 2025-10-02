@@ -17,6 +17,7 @@
     "echarts": "^5.6.0",
     "element-plus": "^2.9.8",
     "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
     "pinia": "^3.0.2",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
@@ -34,7 +35,13 @@
     "@vue/cli-service": "~5.0.0",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "unplugin-auto-import": "^19.2.0",
+    "unplugin-vue-components": "^28.5.0",
+    "webpack": "^5.99.6",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1",
+    "webpack-env": "^0.8.0"
   },
   "browserslist": [
     "> 1%",

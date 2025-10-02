@@ -41,10 +41,11 @@ export const optionAirHumidity = {
       itemStyle: {
         color: '#91cc75'
       },
-      data: [45, 46, 47, 49, 50, 52, 55, 58, 60, 62, 64, 66, 68, 70, 72, 70, 68, 65, 62, 60, 58, 56, 50, 48]
+      data: []
     }
   ]
 };
+
 
 export const optionAirTemperature = {
   tooltip: {
@@ -74,7 +75,7 @@ export const optionAirTemperature = {
     {
       name: '空气温度',
       type: 'line',
-      data: [16, 15, 15, 14, 14, 15, 17, 19, 22, 24, 25, 26, 27, 28, 28, 27, 26, 24, 22, 21, 20, 19, 18, 17],
+      data: [],
       symbol: 'circle',
       symbolSize: 8,
       lineStyle: {
@@ -316,19 +317,19 @@ export const optionSoilStacked = {
         name: '土壤温度',
         type: 'line',
         stack: 'total',
-        data: [10, 9, 8, 7, 8, 12, 18, 22, 21, 17, 14, 11]
+        data: []
       },
       {
         name: '土壤湿度',
         type: 'line',
         stack: 'total',
-        data: [35, 36, 34, 33, 32, 40, 42, 44, 41, 38, 36, 35]
+        data: []
       },
       {
         name: '电导率',
         type: 'line',
         stack: 'total',
-        data: [300, 310, 290, 305, 315, 330, 360, 370, 340, 320, 310, 300]
+        data: []
       }
     ]
   };

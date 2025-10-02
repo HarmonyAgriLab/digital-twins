@@ -1,16 +1,6 @@
 import {RouteRecordRaw} from "vue-router";
 
 export const HomeItem: Array<RouteRecordRaw> = [
-	// {
-	// 	name: "Monitor",
-	// 	path: "Monitor",
-	// 	component: () => import("@/views/home/Monitor/index.vue"),
-	// },
-	{
-		name: "测试页面",
-		path: "test",
-		component: () => import("@/views/test/index.vue"),
-	},
 	{
 		name: "种植实况",
 		path: "OverAll",

@@ -97,44 +97,51 @@ const Link = reactive<LinkItem[]>([
     {
         name: '首页',
         key: 1,
-        path: '/home/test',
+        path: '/home',
         // icon: 'jianceyujing',
         // img: require('@/assets/images/link/zonlan.png'),
         // activeImg: require('@/assets/images/link/zonlan1.png'),
         // TODO：/home/test
-        children: [ // 添加子链接
-            { name: '子链接1', key: 1, path: '/home/Child1' },
-            { name: '子链接2', key: 2, path: '/home/Child2' }
-        ]
+        // children: [ // 添加子链接
+        //     { name: '子链接1', key: 1, path: '/home/Child1' },
+        //     { name: '子链接2', key: 2, path: '/home/Child2' }
+        // ]
     },
     {
         name: '种植情况',
         key: 2,
         path: '/home/OverAll',
-        // icon: 'jianceyujing',
-        // img: require('@/assets/images/link/zonlan.png'),
-        // activeImg: require('@/assets/images/link/zonlan1.png'),
-        // children: [ // 添加子链接
-        //     { name: '室内', key: 1, path: '/home/shinei' },
-        //     { name: '室外', key: 2, path: '/home/shiwai' }
-        // ]
+        icon: 'zhongzhiqingkuang',
+        // img: require('@/assets/img/'),
+        children: [
+            {
+                name: '控制',
+                key: 1,
+                path: '/home/OverAll/shinei'
+            },
+            {
+                name: '无人机',
+                key: 2,
+                path: '/home/OverAll/shiwai'
+            }
+        ]
     },
-    {
-        name: '室内',
-        key: 3,
-         path: '/home/OverAll/shinei'
-        // icon: 'jianceyujing',
-        // img: require('@/assets/images/link/zonlan.png'),
-        // activeImg: require('@/assets/images/link/zonlan1.png'),
-    },
-    {
-        name: '室外',
-        key: 2,
-        path: '/home/OverAll/shiwai'
-        // icon: 'jianceyujing',
-        // img: require('@/assets/images/link/zonlan.png'),
-        // activeImg: require('@/assets/images/link/zonlan1.png'),
-    }
+    // {
+    //     name: '室内',
+    //     key: 3,
+    //      path: '/home/OverAll/shinei'
+    //     // icon: 'jianceyujing',
+    //     // img: require('@/assets/images/link/zonlan.png'),
+    //     // activeImg: require('@/assets/images/link/zonlan1.png'),
+    // },
+    // {
+    //     name: '室外',
+    //     key: 2,
+    //     path: '/home/OverAll/shiwai'
+    //     // icon: 'jianceyujing',
+    //     // img: require('@/assets/images/link/zonlan.png'),
+    //     // activeImg: require('@/assets/images/link/zonlan1.png'),
+    // }
 ]);
 
 const Router = useRouter();
@@ -165,28 +172,28 @@ onMounted(() => {
 <style lang="scss" scoped>
 .warp {
     position: absolute;
-    @include Width(348);
+    @include Width(340); // 通过当前的窗口宽度计算得出
     background: linear-gradient(89.5deg, rgba(10, 19, 28, 0.8) 0%, rgba(15, 28, 40, 0.6) 41%, rgba(16, 28, 40, 0.4) 68%, rgba(16, 29, 41, 0) 100%);
-    @include wHeight(1030);
+    @include hHeight(1095); // 通过当前的窗口高度计算得出
 
     z-index: 100;
     .footer {
         position: absolute;
-        @include Top(0);
+        @include Top(0); 
+        @include Left(30);
         @include Width(400);
-        left: 0;
         right: 0;
         margin: 0 0 0 -100px;
         z-index: 10;
-        @include wHeight(500);
+        @include hHeight(400);
 
         .footer_link {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            // top: 0;
-            @include Top(150);  // 
+            @include Top(150);
+            @include hHeight(200);
             margin: auto;
             z-index: 10;
             display: flex;
@@ -195,9 +202,9 @@ onMounted(() => {
             align-items: center;
 
             .link {
-                @include Width(150);
-                @include wHeight(38);
-                @include Margin(0, 27, 0, 50);
+                @include Width(300);
+                @include hHeight(38);
+                @include Margin(0, 2, 0, 50);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -213,7 +220,6 @@ onMounted(() => {
                     margin-right: 10px;
                     img {
                         @include wHeight(26.5);
-
                         @include Width(26.5);
                         transition: all 0.3s;
                         position: absolute;
@@ -274,41 +280,62 @@ onMounted(() => {
                 }
 
                 .toplinks {
-                    position: fixed;
-                    @include Bottom(105);
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    @include Width(800);
-                    @include wHeight(40);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 10;
+                    position: absolute;                 // 相对定位，相对于浏览器窗口定位
+                    @include Top(100);                  // 从底部偏移105单位（使用mixin设置bottom值）
+                    left: 0;                            // 左边距离为0
+                    right: 0;                           // 右边距离为0
+                    margin: auto;                       // 自动边距，配合left:0和right:0实现水平居中
+                    @include Width(180);                // 增加宽度以适应更美观的布局
+                    @include hHeight(180);              // 高度为400单位（使用mixin基于视口高度计算）
+                    display: flex;                      // 使用弹性布局
+                    flex-direction: column;             // 弹性盒子主轴方向为垂直方向（子元素垂直排列）
+                    justify-content: space-around;      // 主轴方向上均匀分布子元素，两端保留一半间距
+                    align-items: center;                // 交叉轴方向居中对齐
+                    z-index: 10;                        // 设置元素层级为10，控制堆叠顺序
+                    @include MarginLeft(120);                 // 水平偏移20单位，微调位置
+                    // 添加背景和边框美化
+                    background: rgba(193, 255, 169, 0.05);
+                    border-radius: 10px;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(148, 229, 249, 0.3);
+                    padding: 10px 0;
 
                     .toplink {
-                        @include Width(140);
-                        @include wHeight(40);
-                        @include Margin(0, 20, 0, 20);
-                        @include FontSize(18);
-                        color: #ffffff98;
+                        @include Width(160);
+                        @include wHeight(45);
+                        @include Margin(5, 0, 5, 0);
+                        @include FontSize(16);
+                        color: #a0d8f1;
                         display: flex;
-                        font-family: Oppo;
-
+                        font-family: Oppo, serif;
+                        font-weight: 500;
+                        
                         justify-content: center;
                         align-items: center;
+                        
+                        background: rgba(255, 255, 255, 0.05);
+                        border-radius: 8px;
+                        transition: all 0.3s ease;
+                        cursor: pointer;
 
-                        background-size: 100% 100%;
+                        &:hover {
+                            background: rgba(148, 229, 249, 0.2);
+                            color: #fff;
+                            transform: translateY(-2px);
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                        }
 
                         &.toplink_active {
-                            background-size: 100% 100%;
-                            color: #98deff;
-
-                            .svg_left {
-                                // font-size: 3000px;
-                                color: #ffffff;
-                                transform: scale(5);
-                            }
+                            background: linear-gradient(90deg, rgba(148, 229, 249, 0.3), rgba(178, 212, 230, 0.3));
+                            color: #fff;
+                            font-weight: bold;
+                            border: 1px solid rgba(148, 229, 249, 0.5);
+                            
+                            //     font-size: 3000px;
+                            //     color: #2104fe;
+                            //     transform: scale(5);
+                            // }
                         }
                     }
                 }

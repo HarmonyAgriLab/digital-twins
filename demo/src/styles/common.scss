@@ -1,128 +1,158 @@
-// PC size
+// PC 设计稿参考尺寸
 $referanceWidth: 1920;
 $referanceHeight: 1080;
+// 宽度比例系数，用于计算 vw 单位
 $widthRatio: calc($referanceWidth / 100);
+// 高度比例系数，用于计算 vh 单位
 $heightRatio: calc(100 / $referanceWidth);
 $heightRatioByHeight: calc($referanceHeight / 100);
-// font-weight
+
+// 字体粗细定义
 $M: 500;
 $R: 400;
- 
-// mixin
+
+// mixin: 设置元素的左上圆角，使用 vw 单位实现响应式
 @mixin BorderRadiusTL($r) {
   border-top-left-radius: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 设置元素的右上圆角，使用 vw 单位实现响应式
 @mixin BorderRadiusTR($r) {
   border-top-right-radius: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 设置元素的左下圆角，使用 vw 单位实现响应式
 @mixin BorderRadiusBL($r) {
   border-bottom-left-radius: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 设置元素的右下圆角，使用 vw 单位实现响应式
 @mixin BorderRadiusBR($r) {
   border-bottom-right-radius: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 设置元素的四个圆角，使用 vw 单位实现响应式
 @mixin BorderRadius($r) {
   border-radius: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 分别设置四个角的圆角大小，使用 vw 单位实现响应式
 @mixin BorderRadiusAll($a, $b, $c, $d) {
   border-radius: calc(1vw * $a / $widthRatio) calc(1vw * $b / $widthRatio) calc(1vw * $c / $widthRatio) calc(1vw * $d / $widthRatio);
 }
- 
+
+// mixin: 设置元素宽度，使用 vw 单位实现响应式，!important 确保优先级
 @mixin Width($w) {
   width: calc(1vw * $w / $widthRatio) !important;
 }
- 
+
+// mixin: 设置元素宽度，使用插值语法处理变量
 @mixin boxWidth($w) {
   width: calc(1vw * #{$w} / #{$widthRatio});
 }
 
+// mixin: 设置元素最大宽度，使用 vw 单位实现响应式
 @mixin maxWidth($w) {
   max-width: calc(1vw * $w / $widthRatio);
 }
- 
+
+// mixin: 设置元素最小宽度，使用 vw 单位实现响应式
 @mixin minWidth($w) {
   min-width: calc(1vw * $w / $widthRatio);
 }
- 
+
+// mixin: 设置元素最小高度，基于宽度比例计算
 @mixin minWHeight($h) {
   min-height: 1vw * $heightRatio * $h;
 }
- 
+
+// mixin: 设置元素最大高度，基于宽度比例计算
 @mixin maxWHeight($h) {
   max-height: 1vw * $heightRatio * $h;
 }
- 
+
+// mixin: 设置元素高度，基于宽度比例计算，!important 确保优先级
 @mixin wHeight($h) {
   height: 1vw * $heightRatio * $h !important;
 }
- 
+
+// mixin: 设置元素高度，基于视口高度计算，!important 确保优先级
 @mixin hHeight($h) {
   height: calc(100vh * $h / $referanceHeight) !important;
 }
- 
+
+// mixin: 设置元素高度，基于视口高度计算，使用插值语法处理变量
 @mixin boxhHeight($h) {
   height: calc(100vh * #{$h} / #{$referanceHeight});
 }
- 
+
+// mixin: 设置元素最小高度，基于视口高度计算
 @mixin minHHeight($h) {
   min-height: calc(100vh * $h / $referanceHeight);
 }
- 
+
+// mixin: 设置元素最大高度，基于视口高度计算
 @mixin maxHHeight($h) {
   max-height: 100vh * $h / $referanceHeight;
 }
- 
-// 通过calc计算
+
+// mixin: 使用 calc 计算属性值
 @mixin Calc($property, $expression) {
   #{$property}: -webkit-calc(#{$expression});
   #{$property}: calc(#{$expression});
 }
- 
+
+// mixin: 计算宽度，从某个值中减去基于 vw 的值
 @mixin WidthCalc($s, $w) {
   width: calc(#{$s} - 1vw * #{$w} / #{$widthRatio});
 }
- 
+
+// mixin: 计算高度，从 100vh 中减去基于 vh 的值
 @mixin hHeightCalc($h) {
   height: calc(100vh - 100vh * #{$h} / #{$referanceHeight});
 }
- 
+
+// mixin: 在 Y 轴上进行变换，基于宽度比例计算
 @mixin TranslateY($t) {
   transform: translateY(1vw * $heightRatio * $t);
 }
- 
+
+// mixin: 在 Y 轴上进行变换，基于高度比例计算
 @mixin hTranslateY($t) {
   transform: translateY(1vh / $heightRatioByHeight * $t);
 }
- 
+
+// mixin: 设置元素的 top 值，基于宽度比例计算
 @mixin Top($t) {
   top: 1vw * $heightRatio * $t;
 }
- 
+
+// mixin: 设置元素的 top 值，基于高度比例计算
 @mixin hTop($t) {
   top: 1vh / $heightRatioByHeight * $t;
 }
- 
+
+// mixin: 设置元素的 right 值，基于宽度比例计算
 @mixin Right($r) {
   right: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 设置元素的 bottom 值，基于宽度比例计算
 @mixin Bottom($b) {
   bottom: 1vw * $heightRatio * $b;
 }
- 
+
+// mixin: 设置元素的 bottom 值，基于高度比例计算
 @mixin hBottom($b) {
   bottom: 1vh / $heightRatioByHeight * $b;
 }
- 
+
+// mixin: 设置元素的 left 值，基于宽度比例计算
 @mixin Left($l) {
   left: calc(1vw * $l / $widthRatio);
 }
- 
+
+// mixin: 设置元素的 padding 值，综合设置四个方向，基于宽高比例计算
 @mixin Padding($t, $r, $b, $l) {
   padding-top: 1vw * $heightRatio * $t;
   padding-right: calc(1vw * $r / $widthRatio);
@@ -130,37 +160,44 @@ $R: 400;
   padding-left: calc(1vw * $l / $widthRatio);
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的上内边距，基于高度比例计算
 @mixin PaddingTop($t) {
   padding-top: 1vw * $heightRatio * $t;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的右内边距，基于宽度比例计算
 @mixin PaddingRight($r) {
   padding-right: calc(1vw * $r / $widthRatio);
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的下内边距，基于高度比例计算
 @mixin PaddingBottom($b) {
   padding-bottom: 1vw * $heightRatio * $b;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的左内边距，基于宽度比例计算
 @mixin PaddingLeft($l) {
   padding-left: calc(1vw * $l / $widthRatio);
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的上内边距，基于高度比例计算（vh 单位）
 @mixin hPaddingTop($t) {
   padding-top: 1vh / $heightRatioByHeight * $t;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的下内边距，基于高度比例计算（vh 单位）
 @mixin hPaddingBottom($b) {
   padding-bottom: 1vh / $heightRatioByHeight * $b;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置元素的 clip 矩形裁剪区域
 @mixin ClipRect($t, $r, $b, $l) {
   clip: rect(
     1vw * $heightRatio * $t,
@@ -169,240 +206,288 @@ $R: 400;
     calc(1vw * $l / $widthRatio)
   );
 }
- 
+
+// mixin: 设置元素的 margin 值，综合设置四个方向，基于宽高比例计算
 @mixin Margin($t, $r, $b, $l) {
   margin-top: 1vw * $heightRatio * $t;
   margin-right: calc(1vw * $r / $widthRatio);
   margin-bottom: 1vw * $heightRatio * $b;
   margin-left: calc(1vw * $l / $widthRatio);
 }
- 
+
+// mixin: 设置元素的上外边距，基于高度比例计算
 @mixin MarginTop($t) {
   margin-top: 1vw * $heightRatio * $t;
 }
- 
+
+// mixin: 设置元素的上外边距，基于高度比例计算（使用插值语法）
 @mixin boxMarginTop($t) {
   margin-top: calc(1vw * #{$heightRatio} * #{$t});
 }
- 
+
+// mixin: 设置元素的右外边距，基于宽度比例计算
 @mixin MarginRight($r) {
   margin-right: calc(1vw * $r / $widthRatio);
 }
- 
+
+// mixin: 设置元素的下外边距，基于高度比例计算
 @mixin MarginBottom($b) {
   margin-bottom: 1vw * $heightRatio * $b;
 }
- 
+
+// mixin: 设置元素的左外边距，基于宽度比例计算
 @mixin MarginLeft($l) {
   margin-left: calc(1vw * $l / $widthRatio);
 }
- 
+
+// mixin: 设置元素的上外边距，基于高度比例计算（vh 单位）
 @mixin hMarginTop($t) {
   margin-top: calc(1vh / $heightRatioByHeight * $t);
 }
- 
+
+// mixin: 设置元素的下外边距，基于高度比例计算（vh 单位）
 @mixin hMarginBottom($b) {
   margin-bottom: calc(1vh / $heightRatioByHeight * $b);
 }
- 
-@mixin BorderRadius($s) {
-  border-radius: calc(1vw * $s / $widthRatio);
-}
- 
+
+// mixin: 设置字体大小，基于宽度比例计算
 @mixin FontSize($s) {
   font-size: 1vw * $heightRatio * $s !important;
 }
- 
+
+// mixin: 设置字体大小，基于高度比例计算
 @mixin hFontSize($s) {
   font-size: 1vh / $heightRatioByHeight * $s;
 }
- 
+
+// mixin: 设置字体大小并进行缩放变换
 @mixin FontSizeScale($s) {
   $ratio: $s / 12;
   font-size: 1vw * $heightRatio * $s;
   transform-origin: 0% 50%;
   transform: scale($ratio);
 }
- 
+
+// mixin: 设置字体大小并进行缩放变换（基于高度比例）
 @mixin hFontSizeScale($s) {
   $ratio: $s / 12;
   font-size: 1vh / $heightRatioByHeight * $s;
   transform-origin: 0% 50%;
   transform: scale($ratio);
 }
- 
+
+// mixin: 设置行高，基于宽度比例计算
 @mixin LineHeight($h) {
   line-height: 1vw * $heightRatio * $h;
 }
- 
+
+// mixin: 设置行高，基于视口高度计算
 @mixin hLineHeight($h) {
   line-height: calc(100vh * $h / $referanceHeight);
 }
- 
+
+// mixin: 设置字符间距，基于视口高度计算
 @mixin LetterSpacing($h) {
   letter-spacing: calc(100vh * $h / $referanceHeight);
 }
- 
+
+// mixin: 设置边框，综合设置四个方向
 @mixin Border($size, $type, $color) {
   border-top: 1vw * $heightRatio * $size $type $color;
   border-right:calc( 1vw * $size / $widthRatio) $type $color;
   border-bottom: 1vw * $heightRatio * $size $type $color;
   border-left:calc( 1vw * $size / $widthRatio) $type $color;
 }
- 
+
+// mixin: 设置上边框
 @mixin BorderTop($size, $type, $color) {
   border-top: 1vw * $heightRatio * $size $type $color;
 }
- 
+
+// mixin: 设置上边框（基于高度比例）
 @mixin hBorderTop($size, $type, $color) {
   border-top: 100vh * $size / $referanceHeight $type $color;
 }
- 
+
+// mixin: 设置右边框
 @mixin BorderRight($size, $type, $color) {
   border-right:calc( 1vw * $size / $widthRatio) $type $color !important;
 }
- 
+
+// mixin: 设置下边框
 @mixin BorderBottom($size, $type, $color) {
   border-bottom: 1vw * $heightRatio * $size $type $color;
 }
- 
+
+// mixin: 设置左边框
 @mixin BorderLeft($size, $type, $color) {
   border-left:calc( 1vw * $size / $widthRatio) $type $color;
 }
- 
+
+// mixin: 设置盒子阴影
 @mixin BoxShadow($h, $v, $b, $l, $color) {
   box-shadow: calc(1vw * $h / $widthRatio) calc(1vw * $v / $widthRatio) calc(1vw * $b / $widthRatio) calc(1vw * $l / $widthRatio) $color;
 }
- 
+
+// mixin: 设置盒子阴影（内阴影）
 @mixin BoxShadowInset($h, $v, $b, $l, $color) {
   box-shadow: calc(1vw * $h / $widthRatio) calc(1vw * $v / $widthRatio) calc(1vw * $b / $widthRatio) calc(1vw * $l / $widthRatio) inset $color;
 }
- 
+
+// mixin: 设置背景模糊效果
 @mixin backdropFilter($p) {
   -webkit-backdrop-filter: blur(100vh * $p / $referanceHeight);
   /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
   backdrop-filter: blur(100vh * $p / $referanceHeight);
   /* Supported in Chrome 76 */
 }
- 
-// mobile size
+
+// 移动端设计稿参考尺寸
 $referanceWidthMobile: 1280;
 $referanceHeightMobile: 800;
+// 移动端比例系数
 $widthRatioMobile: calc($referanceWidthMobile / 100);
 $heightRatioMobile: calc(100 / $referanceWidthMobile);
 $heightRatioByHeightMobile: calc($referanceHeightMobile / 100);
- 
-// mixin
+
+// 以下为移动端专用的 mixin，与 PC 端类似，但使用移动端的参考尺寸和比例系数
+// mixin: 设置移动端元素的左上圆角
 @mixin m-BorderRadiusTL($r) {
   border-top-left-radius: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素的右上圆角
 @mixin m-BorderRadiusTR($r) {
   border-top-right-radius: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素的左下圆角
 @mixin m-BorderRadiusBL($r) {
   border-bottom-left-radius: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素的右下圆角
 @mixin m-BorderRadiusBR($r) {
   border-bottom-right-radius: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素的四个圆角
 @mixin m-BorderRadius($r) {
   border-radius: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素宽度
 @mixin m-Width($w) {
   width: calc(1vw * $w / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素最大宽度
 @mixin m-maxWidth($w) {
   max-width: calc(1vw * $w / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素最小宽度
 @mixin m-minWidth($w) {
   min-width: calc(1vw * $w / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素最小高度
 @mixin m-minWHeight($h) {
   min-height: 1vw * $heightRatioMobile * $h;
 }
- 
+
+// mixin: 设置移动端元素最大高度
 @mixin m-maxWHeight($h) {
   max-height: 1vw * $heightRatioMobile * $h;
 }
- 
+
+// mixin: 设置移动端元素高度
 @mixin m-wHeight($h) {
   height: 1vw * $heightRatioMobile * $h;
 }
- 
+
+// mixin: 设置移动端元素高度（基于视口高度）
 @mixin m-hHeight($h) {
   height: calc(100vh * $h / $referanceHeightMobile);
 }
- 
+
+// mixin: 设置移动端元素最小高度（基于视口高度）
 @mixin m-minHHeight($h) {
   min-height: calc(100vh * $h / $referanceHeightMobile);
 }
- 
+
+// mixin: 设置移动端元素最大高度（基于视口高度）
 @mixin m-maxHHeight($h) {
   max-height: calc(100vh * $h / $referanceHeightMobile);
 }
- 
+
+// mixin: 计算移动端元素宽度（百分比）
 @mixin m-WidthPercentCalc($w) {
   width: calc(100% - #{1vw * $w / $widthRatioMobile});
 }
- 
+
+// mixin: 计算移动端元素高度（百分比）
 @mixin m-hHeightPercentCalc($h) {
   height: calc(100% - #{100vh * $h / $referanceHeightMobile});
 }
- 
-// 通过calc计算
+
+// mixin: 使用 calc 计算移动端属性值
 @mixin m-Calc($property, $expression) {
   #{$property}: -webkit-calc(#{$expression});
   #{$property}: calc(#{$expression});
 }
- 
+
+// mixin: 计算移动端宽度
 @mixin m-WidthCalc($s, $w) {
   width: calc($s - 1vw * $w / $widthRatioMobile);
 }
- 
+
+// mixin: 计算移动端高度
 @mixin m-hHeightCalc($h) {
   height: calc(100vh - 100vh * $h / $referanceHeight);
 }
- 
+
+// mixin: 在 Y 轴上进行变换（移动端）
 @mixin m-TranslateY($t) {
   transform: translateY(1vw * $heightRatioMobile * $t);
 }
- 
+
+// mixin: 在 Y 轴上进行变换（移动端 vh 单位）
 @mixin m-hTranslateY($t) {
   transform: translateY(1vh / $heightRatioByHeightMobile * $t);
 }
- 
+
+// mixin: 设置移动端元素的 top 值
 @mixin m-Top($t) {
   top: 1vw * $heightRatioMobile * $t;
 }
- 
+
+// mixin: 设置移动端元素的 top 值（vh 单位）
 @mixin m-hTop($t) {
   top: 1vh / $heightRatioByHeightMobile * $t;
 }
- 
+
+// mixin: 设置移动端元素的 right 值
 @mixin m-Right($r) {
   right: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素的 bottom 值
 @mixin m-Bottom($b) {
   bottom: 1vw * $heightRatioMobile * $b;
 }
- 
+
+// mixin: 设置移动端元素的 bottom 值（vh 单位）
 @mixin m-hBottom($b) {
   bottom: 1vh / $heightRatioByHeightMobile * $b;
 }
- 
+
+// mixin: 设置移动端元素的 left 值
 @mixin m-Left($l) {
   left: 1vw * $l / $widthRatioMobile;
 }
- 
+
+// mixin: 设置移动端元素的 padding 值
 @mixin m-Padding($t, $r, $b, $l) {
   padding-top: 1vw * $heightRatioMobile * $t;
   padding-right: calc(1vw * $r / $widthRatioMobile);
@@ -410,429 +495,454 @@ $heightRatioByHeightMobile: calc($referanceHeightMobile / 100);
   padding-left: 1vw * $l / $widthRatioMobile;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的上内边距
 @mixin m-PaddingTop($t) {
   padding-top: 1vw * $heightRatioMobile * $t;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的右内边距
 @mixin m-PaddingRight($r) {
   padding-right: calc(1vw * $r / $widthRatioMobile);
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的下内边距
 @mixin m-PaddingBottom($b) {
   padding-bottom: 1vw * $heightRatioMobile * $b;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的左内边距
 @mixin m-PaddingLeft($l) {
   padding-left: 1vw * $l / $widthRatioMobile;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的上内边距（vh 单位）
 @mixin m-hPaddingTop($t) {
   padding-top: 1vh / $heightRatioByHeightMobile * $t;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的下内边距（vh 单位）
 @mixin m-hPaddingBottom($b) {
   padding-bottom: 1vh / $heightRatioByHeightMobile * $b;
   box-sizing: border-box;
 }
- 
+
+// mixin: 设置移动端元素的 margin 值
 @mixin m-Margin($t, $r, $b, $l) {
   margin-top: 1vw * $heightRatioMobile * $t;
   margin-right: calc(1vw * $r / $widthRatioMobile);
   margin-bottom: 1vw * $heightRatioMobile * $b;
   margin-left: 1vw * $l / $widthRatioMobile;
 }
- 
+
+// mixin: 设置移动端元素的上外边距
 @mixin m-MarginTop($t) {
   margin-top: 1vw * $heightRatioMobile * $t;
 }
- 
+
+// mixin: 设置移动端元素的右外边距
 @mixin m-MarginRight($r) {
   margin-right: calc(1vw * $r / $widthRatioMobile);
 }
- 
+
+// mixin: 设置移动端元素的下外边距
 @mixin m-MarginBottom($b) {
   margin-bottom: 1vw * $heightRatioMobile * $b;
 }
- 
+
+// mixin: 设置移动端元素的左外边距
 @mixin m-MarginLeft($l) {
   margin-left: 1vw * $l / $widthRatioMobile;
 }
- 
+
+// mixin: 设置移动端元素的上外边距（vh 单位）
 @mixin m-hMarginTop($t) {
   margin-top: calc(1vh / $heightRatioByHeightMobile * $t);
 }
- 
+
+// mixin: 设置移动端元素的下外边距（vh 单位）
 @mixin m-hMarginBottom($b) {
   margin-bottom: calc(1vh / $heightRatioByHeightMobile * $b);
 }
- 
-@mixin m-BorderRadius($s) {
-  border-radius: calc(1vw * $s / $widthRatioMobile);
-}
- 
+
+// mixin: 设置移动端字体大小
 @mixin m-FontSize($s) {
   font-size: calc(1vw * $heightRatioMobile * $s);
 }
- 
+
+// mixin: 设置移动端字体大小（vh 单位）
 @mixin m-hFontSize($s) {
   font-size: calc(1vh / $heightRatioByHeightMobile * $s);
 }
- 
+
+// mixin: 设置移动端字体大小并进行缩放变换
 @mixin m-FontSizeScale($s) {
   $ratio: calc($s / 12);
   font-size: calc(1vw * $heightRatioMobile * $s);
   transform-origin: 0% 50%;
   transform: scale($ratio);
 }
- 
+
+// mixin: 设置移动端字体大小并进行缩放变换（vh 单位）
 @mixin m-hFontSizeScale($s) {
   $ratio: $s / 12;
   font-size: 1vh / $heightRatioByHeightMobile * $s;
   transform-origin: 0% 50%;
   transform: scale($ratio);
 }
- 
+
+// mixin: 设置移动端行高
 @mixin m-LineHeight($h) {
   line-height: 1vw * $heightRatioMobile * $h;
 }
- 
+
+// mixin: 设置移动端行高（vh 单位）
 @mixin m-hLineHeight($h) {
   line-height: calc(100vh * $h / $referanceHeight);
 }
- 
+
+// mixin: 设置移动端边框
 @mixin m-Border($size, $type, $color) {
   border-top: 1vw * $heightRatioMobile * $size $type $color;
   border-right: 1vw * $size / $widthRatioMobile $type $color;
   border-bottom: 1vw * $heightRatioMobile * $size $type $color;
   border-left: 1vw * $size / $widthRatioMobile $type $color;
 }
- 
+
+// mixin: 设置移动端上边框
 @mixin m-BorderTop($size, $type, $color) {
   border-top: 1vw * $heightRatioMobile * $size $type $color;
 }
- 
+
+// mixin: 设置移动端上边框（vh 单位）
 @mixin m-hBorderTop($size, $type, $color) {
   border-top: 1vh * $size / $heightRatioByHeightMobile $type $color;
 }
- 
+
+// mixin: 设置移动端右边框
 @mixin m-BorderRight($size, $type, $color) {
   border-right: 1vw * $size / $widthRatioMobile $type $color;
 }
- 
+
+// mixin: 设置移动端下边框
 @mixin m-BorderBottom($size, $type, $color) {
   border-bottom: 1vw * $heightRatioMobile * $size $type $color;
 }
- 
+
+// mixin: 设置移动端左边框
 @mixin m-BorderLeft($size, $type, $color) {
   border-left: 1vw * $size / $widthRatioMobile $type $color;
 }
- 
+
+// mixin: 设置移动端盒子阴影
 @mixin m-BoxShadow($h, $v, $b, $l, $color) {
   box-shadow: calc(1vw * $h / $widthRatioMobile) 1vw * $v / $widthRatioMobile 1vw * $b /
     $widthRatioMobile 1vw * $l / $widthRatioMobile $color;
 }
- 
+
+// mixin: 设置移动端盒子阴影（内阴影）
 @mixin m-BoxShadowInset($h, $v, $b, $l, $color) {
   box-shadow: calc(1vw * $h / $widthRatioMobile) 1vw * $v / $widthRatioMobile 1vw * $b /
     $widthRatioMobile 1vw * $l / $widthRatioMobile inset $color;
 }
- 
+
+// mixin: 设置移动端背景模糊效果
 @mixin m-backdropFilter($p) {
   -webkit-backdrop-filter: blur(100vh * $p / $referanceHeight);
   /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
   backdrop-filter: blur(100vh * $p / $referanceHeight);
   /* Supported in Chrome 76 */
 }
- 
+
+// mixin: 自定义 left 值设置
 @mixin customLeft($l) {
   left: calc(1vw * #{$l} / #{$widthRatio});
 }
- 
+
+// 以下是一些常用的 CSS 工具类
 .relative {
   position: relative;
 }
- 
+
 .absolute {
   position: absolute;
 }
- 
+
 .w-f {
   width: 100%;
 }
- 
+
 .w-25p {
   width: 25%;
 }
- 
+
 .h-f {
   height: 100%;
 }
- 
+
 .wh-f {
   width: 100%;
   height: 100%;
 }
- 
+
 .flex-sb-center {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
- 
+
 .block {
   display: block;
 }
- 
+
 .inline {
   display: inline;
 }
- 
+
 .inlineblock {
   display: inline-block;
 }
- 
+
 .flex {
   display: flex;
 }
- 
+
 .flex1 {
   flex: 1;
 }
- 
+
 .flex2 {
   flex: 2;
 }
- 
+
 .flex3 {
   flex: 3;
 }
- 
+
 .flex4 {
   flex: 4;
 }
- 
+
 .flex5 {
   flex: 5;
 }
- 
+
 .flexcenter {
   align-items: center;
   justify-content: center;
 }
- 
+
 .aligncenter {
   align-items: center;
 }
- 
+
 .spacebetween {
   justify-content: space-between;
 }
- 
+
 .flexwrap {
   flex-wrap: wrap;
 }
- 
+
 .font-bold {
   font-weight: bold;
 }
- 
+
 .lineheight-none {
   line-height: 1;
 }
- 
+
 .lineheight-s {
   line-height: 1.3;
 }
- 
+
 .lineheight-m {
   line-height: 1.5;
 }
- 
+
 .lineheight-l {
   line-height: 1.7;
 }
- 
+
 .textalign-left {
   text-align: left;
 }
- 
+
 .textalign-center {
   text-align: center;
 }
- 
+
 .textalign-right {
   text-align: right;
 }
- 
+
 .nowrap {
   white-space: nowrap;
 }
- 
+
 .noborder {
   border: 0;
 }
- 
+
 .radius-50p {
   border-radius: 50%;
 }
- 
+
 .borderbox {
   box-sizing: border-box;
 }
- 
+
 .selectnone {
   user-select: none;
 }
- 
+
 .pointer {
   cursor: pointer;
 }
- 
+
 .line-1 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
- 
+
 .line-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
- 
+
 .flex-sb-center {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
- 
+
 .flex-jc-sb {
   justify-content: space-between;
 }
- 
+
 .flicker {
   animation: Flicker 0.8s ease-in-out;
   -webkit-animation: Flicker 0.8s ease-in-out;
   animation-iteration-count: 2;
   animation-direction: alternate;
 }
- 
-//渐变色
+
+// 渐变色文本效果
 .gradual-blue {
   background: linear-gradient(180deg, #ffffff 0%, #5dcff1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
- 
-// animate
+
+// 动画关键帧定义
 @keyframes XfadeRight {
   0% {
     transform: translateX(100%);
   }
- 
+
   100% {
     transform: translateX(0);
   }
 }
- 
+
 @keyframes XfadeLeft {
   0% {
     transform: translateX(-100%);
   }
- 
+
   100% {
     transform: translateX(0);
   }
 }
- 
+
 @keyframes YfadeRight {
   0% {
     transform: translateY(-100%);
   }
- 
+
   100% {
     transform: translateY(0);
   }
 }
- 
+
 @keyframes YfadeLeft {
   0% {
     transform: translateY(0);
   }
- 
+
   100% {
     transform: translateY(100%);
   }
 }
- 
+
 @keyframes Flicker {
   0% {
     opacity: 0;
   }
- 
+
   100% {
     opacity: 1;
   }
 }
- 
+
 @keyframes YfadeTop {
   0% {
     transform: translateY(-100%);
   }
- 
+
   100% {
     transform: translateY(0);
   }
 }
- 
+
+// 动画类
 .animate-left {
   animation: XfadeLeft 0.8s ease-in-out forwards;
 }
- 
+
 .animate-right {
   animation: XfadeRight 0.8s ease-in-out forwards;
 }
- 
+
 .animate-opacity {
   animation: Flicker 1s ease-in-out forwards;
 }
- 
+
 .animate-top {
   animation: YfadeTop 0.8s ease-in-out forwards;
 }
- 
+
 // 去除播放器logo
 .iconqingxiLOGO::before {
   content: "";
   display: none;
 }
- 
+
+// 以下 mixin 用于设置元素位置和尺寸，使用插值语法处理变量
 @mixin boxLeft($l) {
     left: calc(1vw * #{$l} / #{$widthRatio});
-  }
-  
- 
-  @mixin boxTop($t) {
+}
+
+@mixin boxTop($t) {
     top: calc(1vw * #{$heightRatio} * #{$t});
-  }
- 
-  @mixin boxWidth($w) {
+}
+
+@mixin boxWidth($w) {
     width: calc(1vw * #{$w} / #{$widthRatio});
-  }
-  
- 
-  @mixin boxwHeight($h) {
+}
+
+@mixin boxwHeight($h) {
     height: calc(100vw * #{$h} / #{$referanceWidth});
-  }
-  
- 
-  @mixin CalcLeft($l) {
+}
+
+@mixin CalcLeft($l) {
     left: calc(1vw * #{$l} / #{$widthRatio});
-  }
+}
